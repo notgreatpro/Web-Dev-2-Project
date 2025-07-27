@@ -6,7 +6,7 @@ $error = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Hardcoded username and password
     $username = "admin";
-    $password = "password123";
+    $password = "I love Genshin Impact";
 
     $input_user = $_POST['username'];
     $input_pass = $_POST['password'];
