@@ -37,20 +37,24 @@ $nextOrder = $order === 'ASC' ? 'desc' : 'asc';
         <tr>
             <th>ID</th>
             <th>Name</th>
+            <th>Character Rarity</th>
             <th>Vision</th>
             <th>Birthday</th>
             <th>Affiliation</th>
-            <th>Nation</th>
+            <th>Nations</th>
+            <th>Signature Weapons</th>
             <th>Actions</th>
         </tr>
         <?php while($row = $result->fetch_assoc()): ?>
         <tr>
             <td><?php echo $row['id']; ?></td>
             <td><?php echo htmlspecialchars($row['name']); ?></td>
+            <td><?php echo htmlspecialchars($row['character rarity']); ?></td>
             <td><?php echo htmlspecialchars($row['vision']); ?></td>
             <td><?php echo htmlspecialchars($row['birthday']); ?></td>
-            <td><?php echo $row['affiliation_id']; ?></td>
-            <td><?php echo $row['nation_id']; ?></td>
+            <td><?php echo htmlspecialchars($row['affiliation']); ?></td>
+            <td><?php echo htmlspecialchars($row['nations']); ?></td>
+            <td><?php echo htmlspecialchars($row['signature weapons']); ?></td>
             <td>
                 <a href="edit_character.php?id=<?php echo $row['id']; ?>">Edit</a> | 
                 <a href="delete_character.php?id=<?php echo $row['id']; ?>" onclick="return confirm('Delete this character?');">Delete</a>
