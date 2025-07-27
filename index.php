@@ -41,6 +41,9 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
             </select>
         </label><br>
         <label>Signature Weapons: <input type="text" name="signature_weapons"></label><br>
+        <label>Description:<br>
+            <textarea name="description" rows="4" cols="50" placeholder="Enter character description here..."></textarea>
+        </label><br>
         <button type="submit">Add Character</button>
     </form>
 </body>

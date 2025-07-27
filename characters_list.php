@@ -55,7 +55,11 @@ $nextOrder = $order === 'ASC' ? 'desc' : 'asc';
         <?php while($row = $result->fetch_assoc()): ?>
         <tr>
             <td><?php echo $row['id']; ?></td>
-            <td><?php echo htmlspecialchars($row['name']); ?></td>
+            <td>
+                <a href="character_detail.php?id=<?php echo $row['id']; ?>">
+                    <?php echo htmlspecialchars($row['name']); ?>
+                </a>
+            </td>
             <td><?php echo htmlspecialchars($row['character rarity']); ?></td>
             <td><?php echo htmlspecialchars($row['vision']); ?></td>
             <td><?php echo htmlspecialchars($row['birthday']); ?></td>
@@ -76,3 +80,6 @@ $nextOrder = $order === 'ASC' ? 'desc' : 'asc';
     <p><a href="index.php">Add New Character</a></p>
 </body>
 </html>
+<?php
+$conn->close();
+?>

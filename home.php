@@ -10,7 +10,7 @@ $isLoggedIn = isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true;
     <title>Genshin Character Info - Home</title>
 </head>
 <body>
-    <h1>Welcome to Genshin Character Info Database</h1>
+    <h1>Welcome to Genshin Impact Character Info Database</h1>
     <p>
         <?php if ($isLoggedIn): ?>
             <a href="index.php">Add New Character</a> | 

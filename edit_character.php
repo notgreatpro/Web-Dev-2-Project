@@ -22,9 +22,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $affiliation = trim($_POST['affiliation']);
     $nations = trim($_POST['nations']);
     $signature_weapons = trim($_POST['signature_weapons']);
+    $description = trim($_POST['description']);
 
-    $stmt = $conn->prepare("UPDATE characters SET name=?, `character rarity`=?, vision=?, birthday=?, affiliation=?, nations=?, `signature weapons`=? WHERE id=?");
-    $stmt->bind_param("sisssssi", $name, $character_rairity, $vision, $birthday, $affiliation, $nations, $signature_weapons, $id);
+    $stmt = $conn->prepare("UPDATE characters SET name=?, `character rarity`=?, vision=?, birthday=?, affiliation=?, nations=?, `signature weapons`=?, description=? WHERE id=?");
+    $stmt->bind_param("sissssssi", $name, $character_rairity, $vision, $birthday, $affiliation, $nations, $signature_weapons, $description, $id);
     if ($stmt->execute()) {
         header("Location: characters_list.php?updated=1");
         exit;
@@ -77,6 +78,9 @@ $conn->close();
             </select>
         </label><br>
         <label>Signature Weapons: <input type="text" name="signature_weapons" value="<?php echo htmlspecialchars($character['signature weapons']); ?>"></label><br>
+        <label>Description:<br>
+            <textarea name="description" rows="4" cols="50" placeholder="Enter character description here..."><?php echo htmlspecialchars($character['description']); ?></textarea>
+        </label><br>
         <button type="submit">Update Character</button>
     </form>
     <p><a href="characters_list.php">Back to List</a></p>
