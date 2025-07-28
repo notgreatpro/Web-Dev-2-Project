@@ -1,19 +1,18 @@
 <?php
 session_start();
 
-$error = "";
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = trim($_POST['username']);
+    $password = $_POST['password'];
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Hardcoded username and password
-    $username = "admin";
-    $password = "I love Genshin Impact";
+    // Example admin credentials (replace with your own authentication logic)
+    $admin_username = 'admin';
+    $admin_password = 'I love Genshin Impact'; // Replace with your real password
 
-    $input_user = $_POST['username'];
-    $input_pass = $_POST['password'];
-
-    if ($input_user === $username && $input_pass === $password) {
+    if ($username === $admin_username && $password === $admin_password) {
         $_SESSION['loggedin'] = true;
-        header("Location: index.php");
+        $_SESSION['username'] = $username;
+        header("Location: home.php"); // Redirect to home.php after successful login
         exit;
     } else {
         $error = "Invalid username or password!";
@@ -29,8 +28,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <h1>Login</h1>
-    <?php if ($error) echo "<p style='color:red;'>$error</p>"; ?>
-    <form method="post" action="">
+    <?php if (isset($error)): ?>
+        <p style="color:red;"><?php echo $error; ?></p>
+    <?php endif; ?>
+    <form method="post">
         <label>Username: <input type="text" name="username" required></label><br>
         <label>Password: <input type="password" name="password" required></label><br>
         <button type="submit">Login</button>
