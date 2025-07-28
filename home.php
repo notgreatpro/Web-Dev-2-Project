@@ -9,7 +9,7 @@ $isLoggedIn = isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true;
     <title>Genshin Character Info - Home</title>
 </head>
 <body>
-    <h1>Welcome to Genshin Impact Character Info Database</h1>
+    <h1>Welcome to Genshin Impact Character Information</h1>
     <p>
         <?php if ($isLoggedIn): ?>
             <a href="index.php">Add New Character</a> |
@@ -21,6 +21,6 @@ $isLoggedIn = isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true;
         <?php endif; ?>
     </p>
     <hr>
-    <p>This is your homepage. Use the links above to manage your Genshin Impact character database.</p>
+    <p>Home of Genshin Impact Character Information provided by Teyvat Archives.</p>
 </body>
 </html>

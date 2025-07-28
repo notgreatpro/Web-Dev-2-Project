@@ -41,10 +41,10 @@ function sort_link($column, $label, $current_sort, $current_order, $nextorder) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Character List (Public)</title>
+    <title>Genshin Character List (Public)</title>
 </head>
 <body>
-    <h1>Character List (Public)</h1>
+    <h1>Genshin Character List (Public)</h1>
     <table border="1" cellpadding="5">
         <tr>
             <th><?php echo sort_link('name', 'Name', $sort, $order, $nextorder); ?></th>

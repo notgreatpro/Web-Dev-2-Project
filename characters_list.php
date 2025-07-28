@@ -11,10 +11,10 @@ $result = $conn->query("SELECT * FROM characters");
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Character List (Admin)</title>
+    <title>Genshin Character List (Admin)</title>
 </head>
 <body>
-    <h1>Character List (Admin)</h1>
+    <h1>Genshin Character List (Admin)</h1>
     <table border="1" cellpadding="5">
         <tr>
             <th>Name</th>
