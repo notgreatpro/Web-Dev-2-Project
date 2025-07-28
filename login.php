@@ -24,10 +24,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Admin Login</title>
 </head>
 <body>
-    <h1>Login</h1>
+    <h1>Admin Login</h1>
     <?php if (isset($error)): ?>
         <p style="color:red;"><?php echo $error; ?></p>
     <?php endif; ?>

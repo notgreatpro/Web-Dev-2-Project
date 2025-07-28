@@ -72,6 +72,7 @@ function sort_link($column, $label, $current_sort, $current_order, $nextorder) {
         <?php endwhile; ?>
     </table>
     <br>
-    <a href="login.php">Admin Login</a>
+    <a href="login.php">Admin Login</a> |
+    <a href="home.php">Return to Home</a>
 </body>
 </html>
