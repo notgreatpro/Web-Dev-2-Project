@@ -8,7 +8,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
 
 $conn = new mysqli("localhost", "root", "", "genshin_character_info_database");
 
-// Sorting logic (like in your image)
+// Sorting logic
 $allowed = [
     'name',
     'birthday',
@@ -47,23 +47,27 @@ function sort_link($column, $label, $current_sort, $current_order, $nextorder) {
     <h1>Character List (Public)</h1>
     <table border="1" cellpadding="5">
         <tr>
-            <th><?= sort_link('name', 'Name', $sort, $order, $nextorder) ?></th>
-            <th><?= sort_link('character rarity', 'Rarity', $sort, $order, $nextorder) ?></th>
-            <th><?= sort_link('vision', 'Vision', $sort, $order, $nextorder) ?></th>
-            <th><?= sort_link('birthday', 'Birthday', $sort, $order, $nextorder) ?></th>
-            <th><?= sort_link('affiliation', 'Affiliation', $sort, $order, $nextorder) ?></th>
-            <th><?= sort_link('nations', 'Nations', $sort, $order, $nextorder) ?></th>
-            <th><?= sort_link('signature weapons', 'Signature Weapons', $sort, $order, $nextorder) ?></th>
+            <th><?php echo sort_link('name', 'Name', $sort, $order, $nextorder); ?></th>
+            <th><?php echo sort_link('character rarity', 'Rarity', $sort, $order, $nextorder); ?></th>
+            <th><?php echo sort_link('vision', 'Vision', $sort, $order, $nextorder); ?></th>
+            <th><?php echo sort_link('birthday', 'Birthday', $sort, $order, $nextorder); ?></th>
+            <th><?php echo sort_link('affiliation', 'Affiliation', $sort, $order, $nextorder); ?></th>
+            <th><?php echo sort_link('nations', 'Nations', $sort, $order, $nextorder); ?></th>
+            <th><?php echo sort_link('signature weapons', 'Signature Weapons', $sort, $order, $nextorder); ?></th>
         </tr>
         <?php while ($row = $result->fetch_assoc()): ?>
         <tr>
-            <td><?= htmlspecialchars($row['name']) ?></td>
-            <td><?= htmlspecialchars($row['character rarity']) ?></td>
-            <td><?= htmlspecialchars($row['vision']) ?></td>
-            <td><?= htmlspecialchars($row['birthday']) ?></td>
-            <td><?= htmlspecialchars($row['affiliation']) ?></td>
-            <td><?= htmlspecialchars($row['nations']) ?></td>
-            <td><?= htmlspecialchars($row['signature weapons']) ?></td>
+            <td>
+                <a href="character_detail_public.php?id=<?php echo $row['id']; ?>">
+                    <?php echo htmlspecialchars($row['name']); ?>
+                </a>
+            </td>
+            <td><?php echo htmlspecialchars($row['character rarity']); ?></td>
+            <td><?php echo htmlspecialchars($row['vision']); ?></td>
+            <td><?php echo htmlspecialchars($row['birthday']); ?></td>
+            <td><?php echo htmlspecialchars($row['affiliation']); ?></td>
+            <td><?php echo htmlspecialchars($row['nations']); ?></td>
+            <td><?php echo htmlspecialchars($row['signature weapons']); ?></td>
         </tr>
         <?php endwhile; ?>
     </table>
