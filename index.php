@@ -6,26 +6,47 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 }
 
 $conn = new mysqli("localhost", "root", "", "genshin_character_info_database");
+$errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Collect and sanitize data from $_POST here
-    $name = $_POST['name'];
+    // Collect and sanitize input
+    $name = trim($_POST['name']);
     $rarity = $_POST['character_rarity'];
-    $vision = $_POST['vision'];
-    $birthday = $_POST['birthday'];
-    $affiliation = $_POST['affiliation'];
+    $vision = trim($_POST['vision']);
+    $birthday = trim($_POST['birthday']);
+    $affiliation = trim($_POST['affiliation']);
     $nations = $_POST['nations'];
-    $signature_weapons = $_POST['signature_weapons'];
-    $description = $_POST['description'];
-    
-    $stmt = $conn->prepare("INSERT INTO characters (name, `character rarity`, vision, birthday, affiliation, nations, `signature weapons`, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssssss", $name, $rarity, $vision, $birthday, $affiliation, $nations, $signature_weapons, $description);
-    $stmt->execute();
-    $stmt->close();
+    $signature_weapons = trim($_POST['signature_weapons']);
+    $description = trim($_POST['description']);
 
-    // Redirect to character list (admin)
-    header("Location: characters_list.php");
-    exit;
+    // Validation
+    if (empty($name)) {
+        $errors[] = "Name is required.";
+    }
+    if (empty($rarity) || !in_array($rarity, ['4', '5'])) {
+        $errors[] = "Character Rarity must be 4 or 5.";
+    }
+    if (empty($vision)) {
+        $errors[] = "Vision is required.";
+    }
+    if (!empty($birthday) && !preg_match('/^\d{4}-\d{2}-\d{2}$/', $birthday)) {
+        $errors[] = "Birthday must be in YYYY-MM-DD format.";
+    }
+    $allowed_nations = ['Mondstadt', 'Liyue', 'Inazuma', 'Sumeru', 'Fontaine', 'Natlan', 'Snezhnaya'];
+    if (empty($nations) || !in_array($nations, $allowed_nations)) {
+        $errors[] = "Nations must be selected from the list.";
+    }
+    // Affiliation, signature_weapons, description are optional
+
+    if (empty($errors)) {
+        $stmt = $conn->prepare("INSERT INTO characters (name, `character rarity`, vision, birthday, affiliation, nations, `signature weapons`, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssssss", $name, $rarity, $vision, $birthday, $affiliation, $nations, $signature_weapons, $description);
+        $stmt->execute();
+        $stmt->close();
+
+        header("Location: characters_list.php");
+        exit;
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -36,31 +57,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <h1>Add New Character</h1>
+    <?php if (!empty($errors)): ?>
+        <ul style="color:red;">
+            <?php foreach ($errors as $e): ?>
+                <li><?php echo htmlspecialchars($e); ?></li>
+            <?php endforeach; ?>
+        </ul>
+    <?php endif; ?>
     <form method="post">
-        Name: <input type="text" name="name" required><br>
+        Name: <input type="text" name="name" value="<?php echo isset($name) ? htmlspecialchars($name) : ''; ?>" required><br>
         Character Rarity:
         <select name="character_rarity" required>
             <option value="">-- Select Rarity --</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
+            <option value="4" <?php if(isset($rarity)&&$rarity=='4') echo 'selected'; ?>>4</option>
+            <option value="5" <?php if(isset($rarity)&&$rarity=='5') echo 'selected'; ?>>5</option>
         </select><br>
-        Vision: <input type="text" name="vision" required><br>
-        Birthday: <input type="date" name="birthday"><br>
-        Affiliation: <input type="text" name="affiliation"><br>
+        Vision: <input type="text" name="vision" value="<?php echo isset($vision) ? htmlspecialchars($vision) : ''; ?>" required><br>
+        Birthday: <input type="date" name="birthday" value="<?php echo isset($birthday) ? htmlspecialchars($birthday) : ''; ?>"><br>
+        Affiliation: <input type="text" name="affiliation" value="<?php echo isset($affiliation) ? htmlspecialchars($affiliation) : ''; ?>"><br>
         Nations:
         <select name="nations" required>
             <option value="">-- Select Nation --</option>
-            <option value="Mondstadt">Mondstadt</option>
-            <option value="Liyue">Liyue</option>
-            <option value="Inazuma">Inazuma</option>
-            <option value="Sumeru">Sumeru</option>
-            <option value="Fontaine">Fontaine</option>
-            <option value="Natlan">Natlan</option>
-            <option value="Snezhnaya">Snezhnaya</option>
+            <?php
+            foreach (['Mondstadt', 'Liyue', 'Inazuma', 'Sumeru', 'Fontaine', 'Natlan', 'Snezhnaya'] as $nation) {
+                echo '<option value="'.htmlspecialchars($nation).'"';
+                if (isset($nations) && $nations === $nation) echo ' selected';
+                echo '>'.htmlspecialchars($nation).'</option>';
+            }
+            ?>
         </select><br>
-        Signature Weapons: <input type="text" name="signature_weapons"><br>
+        Signature Weapons: <input type="text" name="signature_weapons" value="<?php echo isset($signature_weapons) ? htmlspecialchars($signature_weapons) : ''; ?>"><br>
         Description:<br>
-        <textarea name="description" rows="4" cols="70" placeholder="Enter character description here..."></textarea><br>
+        <textarea name="description" rows="4" cols="70" placeholder="Enter character description here..."><?php echo isset($description) ? htmlspecialchars($description) : ''; ?></textarea><br>
         <input type="submit" value="Add Character">
     </form>
     <br>
