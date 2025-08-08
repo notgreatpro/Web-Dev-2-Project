@@ -11,7 +11,7 @@ $characters = $stmt->fetchAll();
 <div class="container">
     <h1>Manage Characters</h1>
     <a href="add_character.php" class="btn">Add New Character</a>
-    <table>
+    <table class="styled-table">
         <thead>
             <tr>
                 <th>Name</th>

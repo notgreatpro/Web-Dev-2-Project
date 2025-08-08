@@ -5,6 +5,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Genshin Character Explorer</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="/public/css/styles.css">
 </head>
 <body>

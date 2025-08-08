@@ -111,33 +111,38 @@ nav ul li a:hover {
     font-size: 0.9em;
     color: #888;
 }
-table {
+.styled-table {
     border-collapse: collapse;
     width: 100%;
     margin-top: 1em;
+    font-family: inherit;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(30,32,50,0.04);
 }
-th, td {
-    border: 1px solid #ddd;
-    padding: 0.6em 1em;
+.styled-table th, .styled-table td {
+    border: 1px solid #e7e7ef;
+    padding: 0.7em 1em;
     text-align: left;
 }
-th {
+.styled-table th {
     background: #23233b;
     color: #fff;
+    font-size: 1.05em;
+    letter-spacing: 1px;
 }
-tr:nth-child(even) {
+.styled-table tr:nth-child(even) {
     background: #f5f5f5;
 }
-.btn {
-    display: inline-block;
-    background: #23233b;
-    color: #ffe066;
-    padding: 0.5em 1em;
-    border-radius: 6px;
-    text-decoration: none;
-    margin-bottom: 1em;
+.styled-table tr:hover {
+    background: #ffe06622;
 }
-.btn:hover {
-    background: #ffe066;
+
+a {
+    color: #3a3adb;
+    text-decoration: underline;
+}
+a:hover {
     color: #23233b;
 }
