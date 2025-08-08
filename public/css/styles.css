@@ -18,13 +18,25 @@ nav ul {
     gap: 2em;
     list-style: none;
     background: #23233b;
-    padding: 1em 2em;
-    border-radius: 0 0 10px 10px;
+    margin: 0;
+    padding: 0.8em 2em 0.8em 2em; /* Reduced vertical padding */
+    border-radius: 0 0 14px 14px;
+    align-items: center;
+}
+nav ul li {
+    margin: 0;
+    padding: 0;
 }
 nav ul li a {
     color: #fafafa;
     text-decoration: none;
-    font-size: 1.1em;
+    font-size: 1.25em;
+    display: block;
+    padding: 0.1em 0.2em;
+    transition: color 0.2s;
+}
+nav ul li a:hover {
+    color: #ffe066;
 }
 
 .character-list {
