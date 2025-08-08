@@ -111,3 +111,33 @@ nav ul li a:hover {
     font-size: 0.9em;
     color: #888;
 }
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 1em;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 0.6em 1em;
+    text-align: left;
+}
+th {
+    background: #23233b;
+    color: #fff;
+}
+tr:nth-child(even) {
+    background: #f5f5f5;
+}
+.btn {
+    display: inline-block;
+    background: #23233b;
+    color: #ffe066;
+    padding: 0.5em 1em;
+    border-radius: 6px;
+    text-decoration: none;
+    margin-bottom: 1em;
+}
+.btn:hover {
+    background: #ffe066;
+    color: #23233b;
+}
