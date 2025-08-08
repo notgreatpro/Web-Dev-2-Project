@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </div>
     <?php endif; ?>
     <form method="post" enctype="multipart/form-data">
-        <table>
+        <table class="admin-form-table">
             <tr>
                 <th>Name</th>
                 <td><input type="text" name="name" value="<?= htmlspecialchars($name) ?>" required></td>
@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </tr>
             <tr>
                 <th>Weapon</th>
-                <td><input type="text" name="weapon" value="<?= htmlspecialchars($weapon) ?>" req   uired></td>
+                <td><input type="text" name="weapon" value="<?= htmlspecialchars($weapon) ?>" required></td>
             </tr>
             <tr>
                 <th>Rarity</th>
@@ -83,8 +83,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </tr>
         </table>
         <br>
-        <button type="submit" class="btn">Add Character</button>
-        <a href="manage_characters.php" class="btn" style="background:#ccc;color:#222;">Cancel</a>
+        <div class="admin-form-actions">
+            <button type="submit" class="btn">Add Character</button>
+            <a href="manage_characters.php" class="btn" style="background:#ccc;color:#222;">Cancel</a>
+        </div>
     </form>
 </div>
 <?php require_once '../includes/footer.php'; ?>

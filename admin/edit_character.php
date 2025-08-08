@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 ?>
 
-<div class="container" style="max-width:500px;">
+<div class="container" style="max-width:600px;">
     <h2>Edit Character</h2>
     <?php if($errors): ?>
         <div style="color:red;">
@@ -68,21 +68,54 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </div>
     <?php endif; ?>
     <form method="post" enctype="multipart/form-data">
-        <!-- ...other fields... -->
-        <label>Description:<br>
-            <textarea name="description" rows="4" style="width:100%;"><?= htmlspecialchars($description) ?></textarea>
-        </label><br><br>
-        <label>Character Image:<br>
-            <input type="file" name="image" accept=".jpg,.jpeg,.png,.gif"><br>
-            <?php
-            $img_path = "../img/" . $name . ".jpg";
-            if (file_exists($img_path)) {
-                echo "<img src='$img_path' alt='$name' style='max-width:120px;border-radius:8px;margin-top:8px;'>";
-            }
-            ?>
-        </label><br><br>
-        <button type="submit">Save Changes</button>
-        <a href="manage_characters.php">Cancel</a>
+        <table class="admin-form-table">
+            <tr>
+                <th>Name</th>
+                <td><input type="text" name="name" value="<?= htmlspecialchars($name) ?>" required></td>
+            </tr>
+            <tr>
+                <th>Vision</th>
+                <td><input type="text" name="vision" value="<?= htmlspecialchars($vision) ?>" required></td>
+            </tr>
+            <tr>
+                <th>Weapon</th>
+                <td><input type="text" name="weapon" value="<?= htmlspecialchars($weapon) ?>" required></td>
+            </tr>
+            <tr>
+                <th>Rarity</th>
+                <td>
+                     <select name="rarity" required>
+                        <option value="4" <?= $rarity == 4 ? "selected" : "" ?>>4 Star</option>
+                        <option value="5" <?= $rarity == 5 ? "selected" : "" ?>>5 Star</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Nation</th>
+                <td><input type="text" name="nation" value="<?= htmlspecialchars($nation) ?>" required></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td><textarea name="description" rows="4" style="width:100%;" required><?= htmlspecialchars($description) ?></textarea></td>
+            </tr>
+            <tr>
+                <th>Character Image</th>
+                <td>
+                    <input type="file" name="image" accept=".jpg,.jpeg,.png,.gif"><br>
+                    <?php
+                    $img_path = "../img/" . $name . ".jpg";
+                    if (file_exists($img_path)) {
+                        echo "<img src='$img_path' alt='$name' style='max-width:120px;border-radius:8px;margin-top:8px;'>";
+                    }
+                    ?>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <div class="admin-form-actions">
+            <button type="submit" class="btn">Save Changes</button>
+            <a href="manage_characters.php" class="btn" style="background:#ccc;color:#222;">Cancel</a>
+        </div>
     </form>
 </div>
 <?php require_once '../includes/footer.php'; ?>
