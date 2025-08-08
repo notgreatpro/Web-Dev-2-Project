@@ -64,3 +64,38 @@ nav ul li a {
     gap: 1em;
     margin-bottom: 1em;
 }
+.character-detail {
+    display: flex;
+    gap: 2em;
+    align-items: flex-start;
+    margin-bottom: 2em;
+}
+.character-img-detail {
+    width: 200px;
+    height: 200px;
+    border-radius: 18px;
+    object-fit: cover;
+    border: 3px solid #b3cdf6;
+    background: #fff;
+}
+.character-info-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1em 0;
+}
+.character-desc {
+    margin-top: 1em;
+}
+.character-comments {
+    margin-top: 2em;
+}
+.comment {
+    background: #f1f3f9;
+    border-radius: 10px;
+    margin-bottom: 1em;
+    padding: 1em;
+}
+.comment-date {
+    font-size: 0.9em;
+    color: #888;
+}
