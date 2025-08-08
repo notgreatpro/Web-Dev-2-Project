@@ -1,0 +1,24 @@
+body {
+    background: 
+        linear-gradient(180deg, #eaeaea 0%, #ffffff 100%),
+        url("../img/Genshin-bg.webp") no-repeat center center fixed;
+    background-size: cover;
+    background-blend-mode: saturation, lighten;
+    /* Ensure white gradient on top of the image, but image is visible */
+    filter: saturate(0.6) brightness(1.07); /* less color, a bit brighter */
+    min-height: 100vh;
+}
+
+/* Make content sit above the background */
+.container, .character-list, .login-form, .character-detail, .admin-form-table, .styled-table {
+    position: relative;
+    z-index: 1;
+}
+
+
+
+/* Remove default body margin and padding for full background effect */
+body {
+    margin: 0;
+    padding: 0;
+}

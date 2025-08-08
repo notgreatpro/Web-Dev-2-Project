@@ -6,12 +6,10 @@
         </div>
         <div class="footer-links">
             <a href="/about.php">About</a>
-            <a href="/privacy.php">Privacy</a>
-            <a href="/contact.php">Contact</a>
         </div>
         <div class="footer-meta">
             &copy; <?= date("Y") ?> Teyvat Archives. Fan project for educational use.<br>
-            <span style="font-size:0.96em;">Not affiliated with miHoYo or Cognosphere.</span>
+            <span style="font-size:0.96em;">This website is not affiliated or endorsed by MiHoYo Tech.Ltd or its subsidaries.</span>
         </div>
     </div>
 </footer>
