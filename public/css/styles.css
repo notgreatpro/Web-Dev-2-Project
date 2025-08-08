@@ -4,6 +4,12 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: HSR Font;
+    src: url('/public/fonts/DINPro-Bold_13934.woff') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 body {
     font-family: Hoyo Font;
     margin: 0;
@@ -141,7 +147,7 @@ body {
 }
 
 .character-card {
-    background: #2ad57d;
+    background: #2828c6;
     border-radius: 12px;
     box-shadow: 0 1px 8px rgba(0,0,0,0.06);
     padding: 1.5em;
@@ -151,7 +157,7 @@ body {
 }
 .character-card:hover {
     box-shadow: 0 4px 24px rgba(0,0,0,0.14);
-    background: #24c7a1;
+    background: #de8d36;
 }
 .character-card h3 {
     margin: 0.6em 0 0.3em;
@@ -198,7 +204,7 @@ body {
     width: 100%;
     margin-top: 1em;
     font-family: inherit;
-    background: #7eeed8;
+    background: #8493a0;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 12px rgba(30,32,50,0.04);
@@ -222,11 +228,11 @@ body {
 }
 
 a {
-    color: #7a8860;
+    color: #080909;
     text-decoration: none;
 }
 a:hover {
-    color: #23233b;
+    color: #47d647;
 }
 
 /* Character Comments Section */
@@ -365,7 +371,7 @@ a:hover {
 
 /* Button styling */
 .login-form button[type="submit"] {
-    background: #6bd2dd;
+    background: #ebf6f6;
     color: #1fe5ad;
     border: none;
     border-radius: 8px;
@@ -442,7 +448,7 @@ a:hover {
     font-size: 1.25rem;
     min-width: 320px;
     background: #75b2de;
-    color: #181f2a;
+    color: #1ad568;
     font-weight: 500;
     transition: border-color 0.18s, box-shadow 0.18s;
     outline: none;
@@ -653,4 +659,130 @@ a:hover {
     background: #ffe066;
     color: #23233b;
     box-shadow: 0 4px 16px #23233b33;
+}
+.character-detail {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 48px;
+    margin-bottom: 2rem;
+}
+
+.character-left-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 320px;
+    max-width: 360px;
+    height: 440px;
+    justify-content: space-between;
+    position: relative;
+}
+
+.character-img-detail {
+    width: 260px;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 18px;
+    border: 3px solid #b3cdf6;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+    background: #fff;
+    margin-top: 10px;
+}
+
+.character-stars {
+    font-size: 2.6rem;
+    color: #ffcb45;
+    letter-spacing: 12px;
+    margin-top: 18px;
+    margin-bottom: 0px;
+    text-align: center;
+    width: 100%;
+    display: block;
+}
+
+.character-quote {
+    font-family: HSR Font;
+    font-size: 2rem;
+    font-style: italic;
+    color: #b2b2b2;
+    text-align: center;
+    margin: 0 0 12px 0;
+    padding: 0 12px;
+    max-width: 320px;
+    word-break: break-word;
+    line-height: 1.1;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.character-middle-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    min-width: 340px;
+    max-width: 480px;
+}
+
+.character-title {
+    font-family: Hoyo Font;
+    font-size: 2.8rem;
+    font-weight: bold;
+    margin: 0 0 18px 0;
+    line-height: 1.05;
+}
+
+.character-info-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0 0;
+    font-family: Hoyo Font;
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    line-height: 1.28;
+}
+
+.character-info-list li {
+    margin-bottom: 10px;
+}
+
+.character-info-list b {
+    font-weight: bold;
+    font-size: 1.04em;
+    display: inline-block;
+    margin-right: 2px;
+}
+
+.character-right-col {
+    flex: 1;
+    min-width: 340px;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 8px;
+}
+
+.character-desc {
+    width: 100%;
+}
+
+.character-desc b {
+    font-family: Hoyo Font;
+    font-size: 1.38rem;
+    font-weight: bold;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.character-desc p {
+    margin-top: 8px;
+    font-size: 1.18rem;
+    font-family: Hoyo Font;
+    line-height: 1.38;
+    color: #222;
+    font-weight: 500;
 }

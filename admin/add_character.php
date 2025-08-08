@@ -4,7 +4,7 @@ require_once '../config/db.php';
 require_once '../includes/admin_header.php';
 
 // Initial values
-$name = $vision = $weapon = $rarity = $nation = $description = $affiliation = $birthday = "";
+$name = $vision = $weapon = $rarity = $nation = $description = $affiliation = $birthday = $quote = "";
 $imageFileName = null;
 $errors = [];
 
@@ -18,6 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $description = trim($_POST["description"] ?? "");
     $affiliation = trim($_POST["affiliation"] ?? "");
     $birthday = trim($_POST["birthday"] ?? "");
+    $quote = trim($_POST["quote"] ?? "");
 
     // Validation
     if ($name === "")   $errors[] = "Name is required.";
@@ -34,7 +35,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $allowed = ["jpg", "jpeg", "png", "gif", "webp"];
         $ext = strtolower(pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION));
         if (in_array($ext, $allowed)) {
-            // Unique file name
             $imageFileName = preg_replace('/[^a-zA-Z0-9]/', '', $name) . "_" . time() . "." . $ext;
             $targetDir = __DIR__ . '/../public/img/';
             if (!is_dir($targetDir)) {
@@ -50,9 +50,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     if (empty($errors)) {
-        $stmt = $pdo->prepare("INSERT INTO characters (`name`, `vision`, `signature weapons`, `character rarity`, `nations`, `description`, `affiliation`, `birthday`, `image`)
-                               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->execute([$name, $vision, $weapon, $rarity, $nation, $description, $affiliation, $birthday, $imageFileName]);
+        $stmt = $pdo->prepare("INSERT INTO characters (`name`, `vision`, `signature weapons`, `character rarity`, `nations`, `description`, `affiliation`, `birthday`, `image`, `quote`)
+                               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->execute([$name, $vision, $weapon, $rarity, $nation, $description, $affiliation, $birthday, $imageFileName, $quote]);
         header("Location: manage_characters.php");
         exit;
     }
@@ -83,6 +83,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <tr><th>Description</th><td><textarea name="description" rows="4" style="width:100%;" required><?= htmlspecialchars($description) ?></textarea></td></tr>
             <tr><th>Affiliation</th><td><input type="text" name="affiliation" value="<?= htmlspecialchars($affiliation) ?>" required></td></tr>
             <tr><th>Birthday</th><td><input type="date" name="birthday" value="<?= htmlspecialchars($birthday) ?>" required></td></tr>
+            <tr><th>Character Quote</th>
+                <td>
+                    <input type="text" name="quote" value="<?= htmlspecialchars($quote) ?>" maxlength="255" placeholder="Enter character quote">
+                </td>
+            </tr>
             <tr><th>Character Image</th><td><input type="file" name="image" accept="image/*"></td></tr>
         </table>
         <br>

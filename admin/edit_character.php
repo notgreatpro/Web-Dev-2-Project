@@ -29,6 +29,7 @@ $description = $character["description"];
 $affiliation = $character["affiliation"];
 $birthday = $character["birthday"];
 $imageFileName = $character["image"];
+$quote = $character["quote"];
 $errors = [];
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -40,6 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $description = trim($_POST["description"] ?? "");
     $affiliation = trim($_POST["affiliation"] ?? "");
     $birthday = trim($_POST["birthday"] ?? "");
+    $quote = trim($_POST["quote"] ?? "");
 
     // Image upload
     if (isset($_FILES["image"]) && $_FILES["image"]["error"] === UPLOAD_ERR_OK) {
@@ -67,8 +69,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     if (empty($errors)) {
-        $stmt = $pdo->prepare("UPDATE characters SET `name`=?, `vision`=?, `signature weapons`=?, `character rarity`=?, `nations`=?, `description`=?, `affiliation`=?, `birthday`=?, `image`=? WHERE id=?");
-        $stmt->execute([$name, $vision, $weapon, $rarity, $nation, $description, $affiliation, $birthday, $imageFileName, $id]);
+        $stmt = $pdo->prepare("UPDATE characters SET `name`=?, `vision`=?, `signature weapons`=?, `character rarity`=?, `nations`=?, `description`=?, `affiliation`=?, `birthday`=?, `image`=?, `quote`=? WHERE id=?");
+        $stmt->execute([$name, $vision, $weapon, $rarity, $nation, $description, $affiliation, $birthday, $imageFileName, $quote, $id]);
         header("Location: manage_characters.php");
         exit;
     }
@@ -99,6 +101,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <tr><th>Description</th><td><textarea name="description" rows="4" style="width:100%;" required><?= htmlspecialchars($description) ?></textarea></td></tr>
             <tr><th>Affiliation</th><td><input type="text" name="affiliation" value="<?= htmlspecialchars($affiliation) ?>" required></td></tr>
             <tr><th>Birthday</th><td><input type="date" name="birthday" value="<?= htmlspecialchars($birthday) ?>" required></td></tr>
+            <tr>
+                <th>Character Quote</th>
+                <td>
+                    <input type="text" name="quote" value="<?= htmlspecialchars($quote) ?>" maxlength="255" placeholder="Enter character quote">
+                </td>
+            </tr>
             <tr>
                 <th>Character Image</th>
                 <td>

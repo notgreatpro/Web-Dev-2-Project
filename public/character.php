@@ -29,20 +29,39 @@ $img = file_exists($imgPath) ? "img/" . $imageFile : "img/default.png";
 $comments = getCommentsForCharacter($pdo, $id);
 ?>
 
+<link rel="stylesheet" href="character-detail.css">
+
 <div class="container">
     <div class="character-detail">
-        <img src="<?= $img ?>" alt="<?= htmlspecialchars($character['name']) ?>" class="character-img-detail">
-        <h1><?= htmlspecialchars($character['name']) ?> <?= str_repeat('⭐', $character['character rarity']) ?></h1>
-        <ul class="character-info-list">
-            <li><b>Vision:</b> <?= htmlspecialchars($character['vision']) ?></li>
-            <li><b>Weapon:</b> <?= htmlspecialchars($character['signature weapons']) ?></li>
-            <li><b>Nation:</b> <?= htmlspecialchars($character['nations']) ?></li>
-            <li><b>Affiliation:</b> <?= htmlspecialchars($character['affiliation']) ?></li>
-            <li><b>Birthday:</b> <?= htmlspecialchars($character['birthday']) ?></li>
-        </ul>
-        <div class="character-desc">
-            <b>Description:</b>
-            <p><?= nl2br(htmlspecialchars($character['description'])) ?></p>
+        <!-- Left column: image, stars, quote -->
+        <div class="character-left-col">
+            <div>
+                <img src="<?= $img ?>" alt="<?= htmlspecialchars($character['name']) ?>" class="character-img-detail">
+                <span class="character-stars"><?= str_repeat('⭐', $character['character rarity']) ?></span>
+            </div>
+            <?php if (!empty($character['quote'])): ?>
+                <div class="character-quote">
+                    "<?= htmlspecialchars($character['quote']) ?>"
+                </div>
+            <?php endif; ?>
+        </div>
+        <!-- Middle column: name and stats -->
+        <div class="character-middle-col">
+            <div class="character-title"><?= htmlspecialchars($character['name']) ?></div>
+            <ul class="character-info-list">
+                <li><b>Vision:</b> <?= htmlspecialchars($character['vision']) ?></li>
+                <li><b>Weapon:</b> <?= htmlspecialchars($character['signature weapons']) ?></li>
+                <li><b>Nation:</b> <?= htmlspecialchars($character['nations']) ?></li>
+                <li><b>Affiliation:</b> <?= htmlspecialchars($character['affiliation']) ?></li>
+                <li><b>Birthday:</b> <?= htmlspecialchars($character['birthday']) ?></li>
+            </ul>
+        </div>
+        <!-- Right column: description -->
+        <div class="character-right-col">
+            <div class="character-desc">
+                <b>Description:</b>
+                <p><?= nl2br(htmlspecialchars($character['description'])) ?></p>
+            </div>
         </div>
     </div>
 
@@ -64,7 +83,6 @@ $comments = getCommentsForCharacter($pdo, $id);
         <form method="post" action="comment_submit.php">
             <input type="hidden" name="character_id" value="<?= $id ?>">
             <textarea name="content" rows="4" cols="60" required placeholder="Your comment..."></textarea><br>
-            <!-- CAPTCHA will go here in the next step -->
             <button type="submit">Submit</button>
         </form>
     </div>

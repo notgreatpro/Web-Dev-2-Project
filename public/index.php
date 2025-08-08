@@ -9,7 +9,7 @@ $characters = getCharacters($pdo, $search, '', '');
 
 ?>
 <div class="container">
-    <h1>⚔️ Genshin Character Explorer</h1>
+    <h1>Genshin Character Explorer</h1>
     <form method="get" class="filter-form" style="margin-bottom: 2em;">
         <input type="text" name="search" placeholder="Search by name..." value="<?= htmlspecialchars($search ?? '') ?>">
         <button type="submit">Search</button>
