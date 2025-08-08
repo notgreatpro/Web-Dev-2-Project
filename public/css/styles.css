@@ -78,7 +78,7 @@ body {
     color: #ffe066;
     padding: 2em 0 1em 0;
     text-align: center;
-    margin-top: 4em;
+    margin-top: 10em;
     box-shadow: 0 -6px 24px rgba(30,32,50,0.07);
     border-radius: 24px 24px 0 0;
 }
@@ -106,24 +106,24 @@ body {
 .footer-title {
     font-size: 1.25em;
     font-weight: bold;
-    color: #ffe066;
+    color: #21dac5bb;
 }
 .footer-links {
     display: flex;
     gap: 1.5em;
 }
 .footer-links a {
-    color: #ffe066;
+    color: #40bbb3;
     text-decoration: none;
     font-weight: bold;
     transition: color 0.2s;
 }
 .footer-links a:hover {
-    color: #fff;
+    color: #acd4d1;
 }
 .footer-meta {
     font-size: 0.97em;
-    color: #ffe066bb;
+    color: #21dac5bb;
     margin-top: 0.5em;
     width: 100%;
     text-align: center;
@@ -141,7 +141,7 @@ body {
 }
 
 .character-card {
-    background: #f8fafb;
+    background: #2ad57d;
     border-radius: 12px;
     box-shadow: 0 1px 8px rgba(0,0,0,0.06);
     padding: 1.5em;
@@ -151,7 +151,7 @@ body {
 }
 .character-card:hover {
     box-shadow: 0 4px 24px rgba(0,0,0,0.14);
-    background: #e1f1fc;
+    background: #24c7a1;
 }
 .character-card h3 {
     margin: 0.6em 0 0.3em;
@@ -163,7 +163,7 @@ body {
     border-radius: 50%;
     margin-bottom: 0.5em;
     border: 2px solid #b3cdf6;
-    background: #fff;
+    background: #1db5c0;
 }
 .filter-form {
     display: flex;
@@ -181,8 +181,8 @@ body {
     height: 200px;
     border-radius: 18px;
     object-fit: cover;
-    border: 3px solid #b3cdf6;
-    background: #fff;
+    border: 3px solid #7a7cf4;
+    background: #0e96c8;
 }
 .character-info-list {
     list-style: none;
@@ -198,13 +198,13 @@ body {
     width: 100%;
     margin-top: 1em;
     font-family: inherit;
-    background: #fff;
+    background: #7eeed8;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 12px rgba(30,32,50,0.04);
 }
 .styled-table th, .styled-table td {
-    border: 1px solid #e7e7ef;
+    border: 1px solid #06bfb2;
     padding: 0.7em 1em;
     text-align: left;
 }
@@ -228,40 +228,12 @@ a {
 a:hover {
     color: #23233b;
 }
-.comment-form textarea {
-    width: 100%;
-    padding: 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    resize: vertical;
-}
-.comment {
-    background: #f4f5fa;
-    border-radius: 12px;
-    margin: 1em 0;
-    padding: 1em;
-    box-shadow: 0 2px 8px #c7b17c22;
-}
-.comment-image {
-    max-width: 120px;
-    max-height: 120px;
-    border-radius: 6px;
-    margin-bottom: 0.7em;
-    border: 1.5px solid #ffe066;
-}
-.comment-actions {
-    margin-top: 0.6em;
-}
-.comment-actions .btn {
-    padding: 0.25em 0.8em;
-    font-size: 1em;
-    margin-right: 0.2em;
-}
+
 /* Character Comments Section */
 .character-comments {
     max-width: 600px;
     margin: 2em auto;
-    background: #fff;
+    background: #3a60d1;
     border-radius: 14px;
     box-shadow: 0 4px 24px #23233b11;
     padding: 2em 2em 1.5em 2em;
@@ -275,21 +247,7 @@ a:hover {
     letter-spacing: 1px;
 }
 
-.comment {
-    background: #f4f5fa;
-    border-radius: 10px;
-    margin-bottom: 1em;
-    padding: 1em 1.3em;
-    box-shadow: 0 2px 8px #23233b0c;
-    border-left: 4px solid #ffe066;
-}
 
-.comment-date {
-    font-size: 0.93em;
-    color: #888;
-    margin-bottom: 0.5em;
-    display: block;
-}
 
 .character-comments p {
     margin: 0.35em 0 0.8em 0;
@@ -298,7 +256,7 @@ a:hover {
 
 .character-comments hr {
     border: none;
-    border-top: 1.5px solid #ffe06677;
+    border-top: 1.5px solid #1bb5d077;
     margin: 1.7em 0 1.2em 0;
 }
 
@@ -318,17 +276,17 @@ a:hover {
     width: 100%;
     padding: 10px 12px;
     border-radius: 8px;
-    border: 1.5px solid #d9d9e3;
+    border: 1.5px solid #56c3eb;
     font-size: 1em;
     font-family: inherit;
-    background: #f8f8fa;
+    background: #ffffff;
     color: #23233b;
     resize: vertical;
     box-sizing: border-box;
     margin-bottom: 0.5em;
 }
 .character-comments textarea:focus {
-    border: 1.5px solid #ffe066;
+    border: 1.5px solid #050706;
     outline: none;
     background: #fffbe5;
 }
@@ -346,6 +304,7 @@ a:hover {
     font-size: 1em;
     width: fit-content;
     align-self: flex-end;
+    font-family: Hoyo Font;
 }
 
 .character-comments button[type="submit"]:hover {
@@ -406,8 +365,8 @@ a:hover {
 
 /* Button styling */
 .login-form button[type="submit"] {
-    background: #23233b;
-    color: #ffe066;
+    background: #6bd2dd;
+    color: #1fe5ad;
     border: none;
     border-radius: 8px;
     padding: 0.6em 1.3em;
@@ -418,12 +377,14 @@ a:hover {
     font-size: 1em;
     width: fit-content;
     align-self: flex-end;
+    font-family: Hoyo Font;
 }
 
 .login-form button[type="submit"]:hover {
     background: #ffe066;
     color: #23233b;
     box-shadow: 0 4px 16px #23233b33;
+    
 }
 
 .login-form .error {
@@ -433,12 +394,31 @@ a:hover {
     font-size: 1.02em;
 }
 
-.login-form .captcha {
-    font-size: 1.18em;
-    color: #23233b;
+
+.captcha {
+    font-family: Hoyo Font, serif;
+    font-size: 1.35em;
     letter-spacing: 2px;
-    font-weight: bold;
-    margin-bottom: 0.4em;
+    color: #23233b;
+    font-weight: 800;
+    background: transparent;
+    padding: 0 4px;
+    border-radius: 4px;
+    display: inline-block;
+}
+.login-form input[name="captcha"] {
+    font-family: Hoyo Font, serif;
+    font-size: 1.15em;
+    letter-spacing: 1px;
+    border: 2px solid #ffe066;
+    background: #fff;
+    border-radius: 8px;
+    padding: 12px;
+    width: 100%;
+    box-sizing: border-box;
+    color: #23233b;
+    font-weight: 600;
+    margin-top: 0.6em;
 }
 .filter-form {
     display: flex;
@@ -457,27 +437,29 @@ a:hover {
 
 .filter-form input[type="text"] {
     padding: 17px 18px;
-    border: 1.5px solid #e4eaf1;
+    border: 1.5px solid #4881c3;
     border-radius: 10px;
     font-size: 1.25rem;
     min-width: 320px;
-    background: #fff;
+    background: #75b2de;
     color: #181f2a;
     font-weight: 500;
     transition: border-color 0.18s, box-shadow 0.18s;
     outline: none;
     box-shadow: 0 1.5px 6px #bed6ee17;
+    font-family: Hoyo Font;
 }
 
 .filter-form input[type="text"]:focus {
     border-color: #7ab3e8;
     box-shadow: 0 0 0 2px #7ab3e84a;
+    
 }
 
 .filter-form button {
     padding: 17px 36px;
     background: linear-gradient(90deg, #7ab3e8 0%, #5e82c1 100%);
-    color: #fff;
+    color: #70e2da;
     border: none;
     border-radius: 10px;
     font-weight: 700;
@@ -486,6 +468,7 @@ a:hover {
     cursor: pointer;
     transition: background 0.13s, box-shadow 0.13s;
     box-shadow: 0 2px 12px #7ab3e81a;
+    font-family: Hoyo Font;
     /* Make the button taller and wider, and bold font for emphasis */
 }
 .filter-form button:hover {
@@ -577,6 +560,7 @@ a:hover {
     transition: background 0.16s, color 0.13s, box-shadow 0.18s;
     text-decoration: none;
     display: inline-block;
+    font-family: Hoyo Font;
 }
 .admin-form-actions .btn:hover,
 .admin-form-actions button[type="submit"]:hover {
@@ -605,4 +589,68 @@ a:hover {
         gap: 9px;
         align-items: stretch;
     }
+}
+/* Feedback form styling */
+.feedback-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1em;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 4px 24px #23233b11;
+    padding: 2em 2em 1.5em 2em;
+    max-width: 480px;
+    margin: 2em auto;
+}
+.feedback-form label {
+    font-weight: bold;
+    color: #23233b;
+    display: block;
+    margin-bottom: 0.4em;
+    font-size: 1.08em;
+}
+.feedback-form input[type="text"],
+.feedback-form input[type="email"],
+.feedback-form textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1.5px solid #d9d9e3;
+    font-size: 1em;
+    font-family: inherit;
+    background: #f8f8fa;
+    color: #23233b;
+    box-sizing: border-box;
+    transition: border 0.2s, background 0.2s;
+    margin-bottom: 0.5em;
+}
+.feedback-form input[type="text"]:focus,
+.feedback-form input[type="email"]:focus,
+.feedback-form textarea:focus {
+    border: 1.5px solid #ffe066;
+    outline: none;
+    background: #fffbe5;
+}
+.feedback-form textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+.feedback-form button[type="submit"] {
+    background: #23233b;
+    color: #ffe066;
+    border: none;
+    border-radius: 8px;
+    padding: 0.6em 1.3em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px #23233b22;
+    font-size: 1em;
+    width: fit-content;
+    align-self: flex-end;
+}
+.feedback-form button[type="submit"]:hover {
+    background: #ffe066;
+    color: #23233b;
+    box-shadow: 0 4px 16px #23233b33;
 }

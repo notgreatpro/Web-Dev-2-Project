@@ -5,7 +5,8 @@
             <span class="footer-title">Teyvat Archives</span>
         </div>
         <div class="footer-links">
-            <a href="/about.php">About</a>
+            <a href="/public/about.php">About</a>
+            <a href="/public/privacy.php">Our Privacy</a>
         </div>
         <div class="footer-meta">
             &copy; <?= date("Y") ?> Teyvat Archives. Fan project for educational use.<br>

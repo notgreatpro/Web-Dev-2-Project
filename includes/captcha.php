@@ -1,17 +1,15 @@
 <?php
-
-
-function generateCaptchaString($length = 5) {
-    $chars = 'ABCDEFGHJKLMNPRSTUVWXYZabcdefghjkmnprstuvwxyz23456789';
-    $str = '';
+// Simple text-based CAPTCHA for demo (not an image/distorted, but matches your screenshot style)
+function generateCaptchaString($length = 6) {
+    $chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789';
+    $captcha = '';
     for ($i = 0; $i < $length; $i++) {
-        $str .= $chars[random_int(0, strlen($chars)-1)];
+        $captcha .= $chars[rand(0, strlen($chars)-1)];
     }
-    $_SESSION['captcha'] = $str;
-    return $str;
+    return $captcha;
 }
 
 function checkCaptcha($input) {
-    return isset($_SESSION['captcha']) && strtolower($input) === strtolower($_SESSION['captcha']);
+    session_start();
+    return isset($_SESSION['captcha_code']) && strtolower(trim($input)) === strtolower($_SESSION['captcha_code']);
 }
-?>

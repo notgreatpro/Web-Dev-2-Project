@@ -27,7 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // On GET: generate new CAPTCHA
-$captcha_code = generateCaptchaString();
+$captcha_code = generateCaptchaString(6);
+$_SESSION['captcha_code'] = $captcha_code;
 ?>
 
 <?php require_once '../includes/header.php'; ?>
@@ -43,10 +44,17 @@ $captcha_code = generateCaptchaString();
         <label>Password:
             <input type="password" name="password" required>
         </label>
-        <label>CAPTCHA:
-            <span class="captcha"><?= htmlspecialchars($captcha_code) ?></span>
-            <input type="text" name="captcha" required placeholder="Enter code above">
+        <label style="font-weight:bold; color:#23233b; font-size:1.15em;">CAPTCHA:
+            <span class="captcha" style="font-family:Hoyo Font,serif; font-size:1.35em; letter-spacing:2px; color:#23233b; background:transparent; font-weight:800;"><?= htmlspecialchars($captcha_code) ?></span>
+            <input 
+                type="text" 
+                name="captcha" 
+                required 
+                placeholder="Enter code above" 
+                style="margin-top:0.6em; font-family:Hoyo Font,serif; font-size:1.15em; letter-spacing:1px; border:2px solid #ffe066; background:#fff; border-radius:8px; padding:12px; width:100%; box-sizing:border-box; color:#23233b; font-weight:600;"
+            >
         </label>
         <button type="submit">Login</button>
     </form>
 </div>
+<?php require_once '../includes/footer.php'; ?>
