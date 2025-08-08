@@ -2,17 +2,25 @@
 require_once '../includes/header.php';
 require_once '../includes/navbar.php';
 
-// Handle feedback submission
+// Feedback message
 $feedback_msg = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = trim($_POST['name'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $message = trim($_POST['message'] ?? '');
 
+    // Simple validation
     if ($name && $email && $message) {
-        // For demo: send email or store feedback in DB (implement as needed)
-        $feedback_msg = "Thank you for your feedback, $name!";
-        // mail('info@genshinexplorer.com', 'Feedback from '.$name, $message, "From: $email");
+        // Send feedback via email
+        $to = 'info@genshinexplorer.com';
+        $subject = 'Feedback from ' . $name;
+        $body = "Name: $name\nEmail: $email\n\n$message";
+        $headers = "From: $email\r\nReply-To: $email\r\n";
+        if (mail($to, $subject, $body, $headers)) {
+            $feedback_msg = "Thank you for your feedback, $name!";
+        } else {
+            $feedback_msg = "Sorry, we couldn't send your feedback. Please try again later.";
+        }
     } else {
         $feedback_msg = "Please fill out all fields.";
     }
@@ -29,20 +37,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?= htmlspecialchars($feedback_msg) ?>
         </div>
     <?php endif; ?>
-    <form method="post" class="feedback-form" style="display:flex; flex-direction:column; gap:1.1em;">
+    <form method="post" class="feedback-form">
         <label>
             Name:
-            <input type="text" name="name" required style="padding:10px; border-radius:8px; border:1.5px solid #e4eaf1;">
+            <input type="text" name="name" required>
         </label>
         <label>
             Email:
-            <input type="email" name="email" required style="padding:10px; border-radius:8px; border:1.5px solid #e4eaf1;">
+            <input type="email" name="email" required>
         </label>
         <label>
             Message:
-            <textarea name="message" rows="6" required style="padding:10px; border-radius:8px; border:1.5px solid #e4eaf1;"></textarea>
+            <textarea name="message" rows="6" required></textarea>
         </label>
-        <button type="submit" style="background:#23233b; color:#ffe066; border:none; border-radius:8px; padding:12px 30px; font-weight:bold; font-size:1.07em; cursor:pointer;">Send Feedback</button>
+        <button type="submit">Send Feedback</button>
     </form>
 </div>
 
