@@ -21,10 +21,9 @@ if (!$character) {
 }
 
 // Prepare image
-$img = "img/" . preg_replace('/[^a-zA-Z0-9]/', '', $character['name']) . ".jpg";
-if (!file_exists($img)) {
-    $img = "img/default.png";
-}
+$imageFile = $character['image'] ?: "default.png";
+$imgPath = __DIR__ . "/img/" . $imageFile;
+$img = file_exists($imgPath) ? "img/" . $imageFile : "img/default.png";
 
 // Fetch comments
 $comments = getCommentsForCharacter($pdo, $id);
@@ -58,10 +57,10 @@ $comments = getCommentsForCharacter($pdo, $id);
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
-            <p>No comments yet. Be the first to comment!</p>
+            <p>There are no comments Traveller. Be sure to be first to comment your favourite characters!</p>
         <?php endif; ?>
         <hr>
-        <h3>Leave a Comment</h3>
+        <h3>Leave a Comment Traveller!</h3>
         <form method="post" action="comment_submit.php">
             <input type="hidden" name="character_id" value="<?= $id ?>">
             <textarea name="content" rows="4" cols="60" required placeholder="Your comment..."></textarea><br>
