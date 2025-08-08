@@ -32,21 +32,21 @@ $captcha_code = generateCaptchaString();
 
 <?php require_once '../includes/header.php'; ?>
 <div class="container" style="max-width:400px;">
-    <h2>Admin Login</h2>
-    <?php if ($error): ?>
-        <div style="color:red;"><?= htmlspecialchars($error) ?></div>
-    <?php endif; ?>
-    <form method="post">
-        <label>Username:<br>
+    <form method="post" class="login-form">
+        <h2>Admin Login</h2>
+        <?php if ($error): ?>
+            <div class="error"><?= htmlspecialchars($error) ?></div>
+        <?php endif; ?>
+        <label>Username:
             <input type="text" name="username" required>
-        </label><br><br>
-        <label>Password:<br>
+        </label>
+        <label>Password:
             <input type="password" name="password" required>
-        </label><br><br>
-        <label>CAPTCHA: <b><?= htmlspecialchars($captcha_code) ?></b><br>
+        </label>
+        <label>CAPTCHA:
+            <span class="captcha"><?= htmlspecialchars($captcha_code) ?></span>
             <input type="text" name="captcha" required placeholder="Enter code above">
-        </label><br><br>
+        </label>
         <button type="submit">Login</button>
     </form>
 </div>
-<?php require_once '../includes/footer.php'; ?>

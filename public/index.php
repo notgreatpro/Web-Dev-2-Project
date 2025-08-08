@@ -4,35 +4,15 @@ require_once '../includes/functions.php';
 require_once '../includes/header.php';
 require_once '../includes/navbar.php';
 
-$weapons = getWeapons($pdo);
-$nations = getNations($pdo);
-
 $search = $_GET['search'] ?? '';
-$weapon = $_GET['weapon'] ?? '';
-$nation = $_GET['nation'] ?? '';
-$characters = getCharacters($pdo, $search, $weapon, $nation);
+$characters = getCharacters($pdo, $search, '', ''); // Pass empty weapon and nation
+
 ?>
 <div class="container">
     <h1>⚔️ Genshin Character Explorer</h1>
     <form method="get" class="filter-form">
         <input type="text" name="search" placeholder="Search by name..." value="<?= htmlspecialchars($search) ?>">
-        <select name="weapon">
-            <option value="">All Weapons</option>
-            <?php foreach ($weapons as $w): ?>
-                <option value="<?= htmlspecialchars($w['name']) ?>" <?= $weapon == $w['name'] ? 'selected' : '' ?>>
-                    <?= htmlspecialchars($w['name']) ?>
-                </option>
-            <?php endforeach; ?>
-        </select>
-        <select name="nation">
-            <option value="">All Nations</option>
-            <?php foreach ($nations as $n): ?>
-                <option value="<?= htmlspecialchars($n['name']) ?>" <?= $nation == $n['name'] ? 'selected' : '' ?>>
-                    <?= htmlspecialchars($n['name']) ?>
-                </option>
-            <?php endforeach; ?>
-        </select>
-        <button type="submit">Filter</button>
+        <button type="submit">Search</button>
     </form>
     <div class="character-list">
         <?php foreach ($characters as $c): 
