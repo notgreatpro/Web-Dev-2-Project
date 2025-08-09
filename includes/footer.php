@@ -1,7 +1,7 @@
 <footer class="site-footer">
     <div class="footer-container">
         <div class="footer-logo">
-            <a href="/"><img src="/public/img/Teyvat_Archives_Logo.png" alt="Site Logo" class="footer-logo-img"></a>
+            <a href=""><img src="/public/img/Teyvat_Archives_Logo.png" alt="Site Logo" class="footer-logo-img"></a>
             <span class="footer-title">Teyvat Archives</span>
         </div>
         <div class="footer-links">
