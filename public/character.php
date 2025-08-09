@@ -50,7 +50,7 @@ $comments = getCommentsForCharacter($pdo, $id);
             <div class="character-title"><?= htmlspecialchars($character['name']) ?></div>
             <ul class="character-info-list">
                 <li><b>Vision:</b> <?= htmlspecialchars($character['vision']) ?></li>
-                <li><b>Weapon:</b> <?= htmlspecialchars($character['signature weapons']) ?></li>
+                <li><b>Signature Weapon:</b> <?= htmlspecialchars($character['signature weapons']) ?></li>
                 <li><b>Nation:</b> <?= htmlspecialchars($character['nations']) ?></li>
                 <li><b>Affiliation:</b> <?= htmlspecialchars($character['affiliation']) ?></li>
                 <li><b>Birthday:</b> <?= htmlspecialchars($character['birthday']) ?></li>

@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <table class="admin-form-table">
             <tr><th>Name</th><td><input type="text" name="name" value="<?= htmlspecialchars($name) ?>" required></td></tr>
             <tr><th>Vision</th><td><input type="text" name="vision" value="<?= htmlspecialchars($vision) ?>" required></td></tr>
-            <tr><th>Weapon</th><td><input type="text" name="weapon" value="<?= htmlspecialchars($weapon) ?>" required></td></tr>
+            <tr><th> Signature Weapon</th><td><input type="text" name="weapon" value="<?= htmlspecialchars($weapon) ?>" required></td></tr>
             <tr><th>Rarity</th>
                 <td>
                     <select name="rarity" required>

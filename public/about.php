@@ -17,7 +17,7 @@ require_once '../includes/navbar.php';
     </ul>
     <h2>Contact & Feedback</h2>
     <p>
-        Have suggestions or found a bug? Reach out via the comment section under each character, or send an email to <a href="mailto:info@genshinexplorer.com">info@genshinexplorer.com</a>.
+        Have suggestions or found a bug? Please reach to us by email at <a href="mailto:info@genshinexplorer.teyvatarchives.com">info@genshinexplorer.teyvatarchives.com</a>.
     </p>
     <h2>Disclaimer</h2>
     <p>
