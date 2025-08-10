@@ -10,6 +10,5 @@ function generateCaptchaString($length = 6) {
 }
 
 function checkCaptcha($input) {
-    session_start();
     return isset($_SESSION['captcha_code']) && strtolower(trim($input)) === strtolower($_SESSION['captcha_code']);
 }

@@ -22,13 +22,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
             $mail->Username = 'kylejzarahan@gmail.com';        
-            $mail->Password = 'bhjg emio uzcd yqrc';                 // <-- Your Gmail app password (see below)
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;       // or use 'ssl'
-            $mail->Port = 465;                                     // 465 for SSL
+            $mail->Password = 'bhjg emio uzcd yqrc';                 
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;       
+            $mail->Port = 465;                                     
 
             // Set sender info
-            $mail->setFrom('kylearahan19@gamil.com', 'Kyle Arahan'); // <-- Your Gmail address and name
-            $mail->addAddress('kylejzarahan@gmail.com');             // <-- Destination address
+            $mail->setFrom('kylearahan19@gamil.com', 'Kyle Arahan'); 
+            $mail->addAddress('kylejzarahan@gmail.com');             
 
             $mail->Subject = 'Feedback from ' . $name;
             $mail->Body = "Name: $name\nEmail: $email\n\n$message";
