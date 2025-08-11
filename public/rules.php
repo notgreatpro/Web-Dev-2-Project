@@ -26,10 +26,10 @@ require_once '../includes/navbar.php';
         <hr>
         <h3>Relevant to Genshin Impact</h3>
         <p> This website is stictly ONLY for Genshin Impact related topics. The following games/genres that are prohibited to discuss topic outside Genshin such as:<p>
-            <li>anime games/shows</li>
+            <li>Anime games/shows</li>
             <li>Other Hoyo titles such as Honkai: Star Rail, Zenless Zone Zero</li>
-            <li>other games</li>
-            <li>tv shows</li>
+            <li>Other games</li>
+            <li>Tv Shows</li>
         <p> Please refrain other topics whenever you edit character cards such as description and quotes.
         <h3> Leaked Content</h3>
         <p>Genshin Leaks are stictly prohibited on this site when editing/adding characters. This includes: </p>
@@ -48,7 +48,7 @@ require_once '../includes/navbar.php';
             <li>Uploading spam links to external/illegal sites</li>
             <li>Removing content with no apparent reason</li>
             <li>Using hate speech, discriminatory, racism, or any type</li>
-            <li> Using inappropriate images (NSFW)</li>
+            <li> Using inappropriate images</li>
          <h2> Community Guidelines </h2>
         <hr>
         <p> Our Community Guidelines affects only on the character "Comment Section". We advice you to read the guidelines very carefully and familiarize yourself by abiding the 
@@ -69,14 +69,14 @@ require_once '../includes/navbar.php';
         <h3>Off-topics</h3>
         <p>
             Any Off-topic comments will be subject to a removal. This includes comments that isnt Genshin Impact related topics. Such examples are:</p>
-            <li>Check out this genshin video. (linking to a video outside genshin)</li>
+            <li>"Check out this genshin video."(linking to a video outside Genshin)</li>
             <li>Discussion of very sensitive topics such as politics or current events</li>
             <li>Discussing other Hoyo Games outside of Genshin Impact (this applies to other games).
             <br>
             <p>Please keep in mind to comment in Genshin related topics (refrain from steering to off-topic conversations). We encourage you to discuss somewhere else
             such as Discord or other chat platforms for any off topic discussions. This website is meant for chatting only Genshin purposes.</p>
         <h3> Inapropriate Content</h3>
-        <p>Pornography (NSFW means Not Safe for Work), sexual content against characters or by any means are strictly prohibited on this website. It is defined as sexual or offensive
+        <p>Any means of inapropriate content no matter what it is are strictly prohibited on this website. It is defined as sexual or offensive
             content which hinders the affect for younger fans specifically under the age of 18 on certain countries. Below are list of content you should considering avoiding: </p>
             <li>Adding character images considering an inapropriate content</li>
             <li>Comments with hate speech, racism, or comments that is very offensive to some users</li>
@@ -103,7 +103,7 @@ require_once '../includes/navbar.php';
         <br>
         <p>Users are still allowed to distake/dont like certain characters however, we dont tolerate spam comments repeately such as "[Character] sucks", "[Character] is garbage".
             However these negative comments are different from users who spam and trolling.</p>
-        <p> Trolling is defined as using someone to annoying them depending of thier comments. This makes the comment into a bait response making users frustrated. We dont tolerate
+        <p> Trolling is defined as using someone to annoying them depending of their comments. This makes the comment into a bait response making users frustrated. We dont tolerate
             trolling behaviour and will be dealt accordingly.
         <h3>Moderation and Enforcement</h3>
         <p>All comments, posts, and uploads are subject to moderation. The team may edit, remove, or restrict content that violates these guidelines. Severe or repeated rule-breaking may result in warnings, 
