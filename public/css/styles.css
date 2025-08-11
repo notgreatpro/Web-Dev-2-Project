@@ -640,6 +640,7 @@ a:hover {
 .feedback-form button[type="submit"] {
     background: #23233b;
     color: #ffe066;
+    font-family: Hoyo Font;
     border: none;
     border-radius: 8px;
     padding: 0.6em 1.3em;
@@ -795,4 +796,21 @@ a:hover {
     margin-top: 48px; /* Guarantees separation from quote */
     position: relative;
     z-index: 2;
+}
+.character-timestamps {
+    margin-top: 16px;
+    margin-bottom: 0;
+    font-size: 1.1rem;
+    color: #8ccbc6;
+    font-family: Hoyo Font, Arial;
+    text-align: center;
+    font-weight: 700;
+    background: none;
+    letter-spacing: 0.04em;
+}
+
+.character-timestamps b {
+    color: #37a49b;
+    font-weight: 800;
+    font-family: inherit;
 }

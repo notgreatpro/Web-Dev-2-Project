@@ -27,13 +27,17 @@ $img = file_exists($imgPath) ? "img/" . $imageFile : "img/default.png";
 
 // Fetch comments
 $comments = getCommentsForCharacter($pdo, $id);
+
+// Fetch character timestamps 
+$created_at = !empty($character['created_at']) ? date('Y-m-d H:i:s', strtotime($character['created_at'])) : 'Unknown';
+$updated_at = !empty($character['updated_at']) ? date('Y-m-d H:i:s', strtotime($character['updated_at'])) : 'Never';
 ?>
 
 <link rel="stylesheet" href="character-detail.css">
 
 <div class="container">
     <div class="character-detail">
-        <!-- Left column: image, stars, quote -->
+        <!-- Left column: image, stars, quote, timestamps -->
         <div class="character-left-col">
             <div>
                 <img src="<?= $img ?>" alt="<?= htmlspecialchars($character['name']) ?>" class="character-img-detail">
@@ -44,6 +48,10 @@ $comments = getCommentsForCharacter($pdo, $id);
                     "<?= htmlspecialchars($character['quote']) ?>"
                 </div>
             <?php endif; ?>
+            <div class="character-timestamps">
+                <span>Added: <b><?= $created_at ?></b></span><br>
+                <span>Last Edited: <b><?= $updated_at ?></b></span>
+            </div>
         </div>
         <!-- Middle column: name and stats -->
         <div class="character-middle-col">

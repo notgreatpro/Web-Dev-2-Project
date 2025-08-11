@@ -12,9 +12,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!checkCaptcha($captcha)) {
         $error = "Incorrect CAPTCHA code.";
     } else {
-        // Replace with your desired admin credentials or look up in users table
         $admin_user = 'Teyvat';
-        $admin_pass = 'I Love Genshin'; // Change this for production!
+        $admin_pass = 'I Love Genshin'; 
 
         if ($username === $admin_user && $password === $admin_pass) {
             $_SESSION['admin_logged_in'] = true;

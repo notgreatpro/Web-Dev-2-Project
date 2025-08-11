@@ -29,7 +29,7 @@ require_once '../includes/navbar.php';
         <div class="faq-item">
             <h2>4. How do I report incorrect information?</h2>
             <p>
-               You must contact us by emailing to <a href="mailto:info@genshinexplorer.teyvatarchives.com">info@genshinexplorer.teyvatarchives.com</a> or send your feedback through
+               You must contact us by emailing to <a href="mailto:genshinexplorerofficial@gmail.com">genshinexplorerofficial@gmail.com</a> or send your feedback through
                our <b>Feedback Page</b>
             </p>
         </div>

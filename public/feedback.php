@@ -28,13 +28,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Set sender info
             $mail->setFrom('kylearahan19@gamil.com', 'Kyle Arahan'); 
-            $mail->addAddress('kylejzarahan@gmail.com');             
+            $mail->addAddress('genshinexplorerofficial@gmail.com');             
 
             $mail->Subject = 'Feedback from ' . $name;
             $mail->Body = "Name: $name\nEmail: $email\n\n$message";
 
             $mail->send();
-            $feedback_msg = "Thank you for your feedback, $name!";
+            $feedback_msg = "Thank you for your feedback, $name! ";
         } catch (Exception $e) {
             $feedback_msg = "Sorry, feedback could not be sent. Mailer error: " . htmlspecialchars($mail->ErrorInfo);
         }
@@ -47,7 +47,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div class="container" style="max-width:700px; margin-top:40px;">
     <h1>Feedback</h1>
     <p>
-        We appreciate your suggestions, questions, and bug reports. Fill out the form below, and we'll get back to you as soon as possible.
+        We appreciate your suggestions, questions, and bug reports. Your feedback will help us improve our website without the hassle.
+        Please input the form below and we reply to you as soon as possible!
     </p>
     <?php if ($feedback_msg): ?>
         <div style="color:<?= strpos($feedback_msg, 'Thank') === 0 ? 'green' : 'red' ?>; margin-bottom:1em;">

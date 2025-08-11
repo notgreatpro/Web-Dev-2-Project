@@ -16,7 +16,7 @@ require_once '../includes/navbar.php';
     </p>
     <h2>Contact Us</h2>
     <p>
-        If you have privacy concerns or questions, please reach out via our feedback form or email us at <a href="mailto:privacy@genshinexplorer.teyvatarchives.com">privacy@genshinexplorer.teyvatarchives.com</a>.
+        If you have privacy concerns or questions, please reach out via our feedback form or email us at <a href="mailto:genshinexplorerofficial@gmail.com">genshinexplorerofficial@gmail.com</a>.
     </p>
 </div>
 
