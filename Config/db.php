@@ -1,10 +1,10 @@
 <?php
 // Database configuration and PDO connection
 
-$host = 'localhost';
-$db   = 'genshin_character_info_database';
-$user = 'root';
-$pass = '';
+$host = 'sql207.byethost7.com';
+$db   = 'b7_39678050_GenshinExplorerDatabase';
+$user = 'b7_39678050';
+$pass = 'TeyvatArchives';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
