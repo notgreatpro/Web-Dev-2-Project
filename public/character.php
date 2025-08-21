@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../config/db.php';
 require_once '../includes/functions.php';
 require_once '../includes/header.php';
@@ -88,11 +89,15 @@ $updated_at = !empty($character['updated_at']) ? date('Y-m-d H:i:s', strtotime($
         <?php endif; ?>
         <hr>
         <h3>Leave a Comment Traveller!</h3>
-        <form method="post" action="comment_submit.php">
-            <input type="hidden" name="character_id" value="<?= $id ?>">
-            <textarea name="content" rows="4" cols="60" required placeholder="Your comment..."></textarea><br>
-            <button type="submit">Submit</button>
-        </form>
+        <?php if (isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] === true): ?>
+            <form method="post" action="comment_submit.php">
+                <input type="hidden" name="character_id" value="<?= $id ?>">
+                <textarea name="content" rows="4" cols="60" required placeholder="Your comment..."></textarea><br>
+                <button type="submit">Submit</button>
+            </form>
+        <?php else: ?>
+            <p style="color:#b00;">You must <a href="user_login.php">login</a> to comment!</p>
+        <?php endif; ?>
     </div>
 </div>
 
