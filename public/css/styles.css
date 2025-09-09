@@ -1032,3 +1032,28 @@ a:hover {
     margin-top: 1.6em;
     font-weight: bold;
 }
+.profile-form button[type="submit"] {
+    background: #ffe066;
+    color: #23233b;
+    border: none;
+    border-radius: 7px;
+    font-size: 1.1em;
+    font-family: 'Hoyo Font', serif;
+    padding: 10px 26px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 8px #ffe06655;
+    margin-top: 0.2em;
+    transition: background 0.22s, color 0.15s;
+}
+
+.profile-form button[type="submit"]:hover {
+    background: #23233b;
+    color: #ffe066;
+}
+.profile-container img {
+    border-radius: 50%;
+    box-shadow: 0 2px 8px #ffe06655;
+    
+    margin-bottom: 1em;
+}
