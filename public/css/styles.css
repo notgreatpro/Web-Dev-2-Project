@@ -26,6 +26,35 @@ body {
 }
 
 /* Navigation Bar */
+/* --- Fix oversized logo and navbar spacing --- */
+.navbar-logo, .nav-logo {
+    max-width: 56px;
+    max-height: 56px;
+    width: auto;
+    height: auto;
+    border-radius: 6px;
+    vertical-align: middle;
+    display: inline-block;
+    object-fit: contain;
+}
+
+.navbar .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0; /* Prevents extra expansion */
+}
+
+.site-title {
+    font-size: 1.25em;
+    font-weight: bold;
+    color: #ffe066;
+    letter-spacing: 1px;
+    margin-left: 0.2em;
+    white-space: nowrap;
+}
+
+
 .navbar {
     display: flex;
     align-items: center;
@@ -35,29 +64,11 @@ body {
     margin: 0;
     border-radius: 0 0 16px 16px;
 }
-.navbar .logo {
+/* Prevents giant logo from stretching navbar vertically */
+.navbar li {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-right: 2em;
-}
-.navbar-logo {
-    height: 36px;
-    width: auto;
-    border-radius: 6px;
-    transition: box-shadow 0.2s;
-}
-.navbar-logo:hover {
-    box-shadow: 0 0 12px #ffe06688;
-}
-.site-title {
-    font-size: 1.45em;
-    font-weight: bold;
-    color: #ffe066;
-    letter-spacing: 1px;
-}
-.navbar li {
-    margin: 0 1em 0 0;
+    height: 64px;
 }
 .navbar li.right {
     margin-left: auto;
