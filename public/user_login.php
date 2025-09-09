@@ -38,6 +38,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </label>
         <button type="submit">Login</button>
     </form>
-    <p>No account yet? <a href="signup.php">Sign up here</a></p>
+    <p>No account yet? <a href="sign_up.php">Sign up here</a></p>
 </div>
 <?php require_once '../includes/footer.php'; ?>

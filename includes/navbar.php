@@ -11,7 +11,7 @@
         <li><a href="/public/rules.php">Rules & Guidelines</a></li>
         <li><a href="/public/user_login.php" style="font-weight:bold;">User Login</a></li>
         <li><a href="/public/sign_up.php" style="font-weight:bold;">Sign Up</a><li>
-        <li class="right"><a href="login.php">Admin Login</a></li>
+        <li class="right"><a href="adminlogin.php">Admin Login</a></li>
     </ul>
 </nav>
  

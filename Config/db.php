@@ -2,7 +2,7 @@
 // Database configuration and PDO connection
 
 $host = 'localhost';
-$db   = 'genshin_character_info_database';
+$db   = 'genshin_character_info';
 $user = 'root';
 $pass = '';
 $charset = 'utf8mb4';
