@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <label>Current Password: <input type="password" name="current_password" required></label><br>
         <label>New Password: <input type="password" name="new_password" required></label><br>
         <label>Repeat New Password: <input type="password" name="repeat_password" required></label><br>
-        <button type="submit">Change Password</button>
+        <button type="submit" class="change-pass-btn">Change Password</button>
     </form>
     <p><a href="profile.php">&larr; Back to Profile</a></p>
 </div>

@@ -1210,3 +1210,95 @@ a:hover {
         height: 90px;
     }
 }
+
+/* Responsive NAVBAR and SORT BAR (ADD THIS SECTION) */
+@media (max-width: 700px) {
+  .navbar {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0.5em 0.5em;
+  }
+  .navbar li {
+    height: auto;
+    justify-content: flex-start;
+  }
+  .navbar a {
+    display: block;
+    padding: 1em 0.7em;
+    font-size: 1.12em;
+    text-align: left;
+  }
+  .sort-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 1em;
+  }
+
+}
+.profile-info-col form input[type="text"], .profile-info-col form input[type="file"] {
+    display: block;
+    margin: 0.3em 0 1.1em 0;
+    padding: 0.5em;
+    font-size: 1.1em;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 100%;
+    max-width: 320px;
+}
+.profile-info-col form button[type="submit"] {
+    background: #ffe066;
+    color: #23233b;
+    border: none;
+    border-radius: 7px;
+    font-size: 1.1em;
+    font-family: 'Hoyo Font', serif;
+    padding: 10px 26px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 8px #ffe06655;
+    transition: background 0.22s, color 0.15s;
+}
+.profile-info-col form button[type="submit"]:hover {
+    background: #23233b;
+    color: #ffe066;
+}
+.error { color: #c00; margin-bottom: 0.6em; }
+.success { color: #2a6c2a; margin-bottom: 0.6em; }
+.change-pass-btn {
+    background: #ffe066;
+    color: #23233b;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 24px;
+    font-size: 1.08em;
+    font-family: 'Hoyo Font', serif;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 8px #ffe06655;
+    transition: background 0.22s, color 0.15s;
+    margin-top: 0.7em;
+}
+.change-pass-btn:hover {
+    background: #23233b;
+    color: #ffe066;
+}
+
+.delete-btn {
+    background: #e9dbda;
+    color: #b74a3e;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 24px;
+    font-size: 1.08em;
+    font-family: 'Hoyo Font', serif;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 8px #ffe06655;
+    transition: background 0.22s, color 0.15s;
+    margin-top: 0.7em;
+}
+.delete-btn:hover {
+    background: #140908;
+    color: #d43422;
+}
