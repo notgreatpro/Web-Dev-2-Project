@@ -26,7 +26,7 @@ $imageFile = $character['image'] ?: "default.png";
 $imgPath = __DIR__ . "/img/" . $imageFile;
 $img = file_exists($imgPath) ? "img/" . $imageFile : "img/default.png";
 
-// Fetch comments
+// Fetch comments (now includes username and avatar)
 $comments = getCommentsForCharacter($pdo, $id);
 
 // Fetch character timestamps 
@@ -79,9 +79,15 @@ $updated_at = !empty($character['updated_at']) ? date('Y-m-d H:i:s', strtotime($
         <h2>Comments</h2>
         <?php if ($comments): ?>
             <?php foreach ($comments as $comment): ?>
-                <div class="comment">
-                    <span class="comment-date"><?= htmlspecialchars($comment['created_at']) ?></span>
-                    <p><?= nl2br(htmlspecialchars($comment['content'])) ?></p>
+                <div class="comment-row">
+                    <div class="comment-meta">
+                        <img class="comment-avatar"
+                             src="/public/avatars/<?= htmlspecialchars($comment['avatar'] ?? 'default.png') ?>"
+                             alt="<?= htmlspecialchars($comment['username'] ?? 'User') ?>'s avatar">
+                        <span class="comment-username"><?= htmlspecialchars($comment['username'] ?? 'Unknown') ?></span>
+                        <span class="comment-date"><?= htmlspecialchars($comment['created_at']) ?></span>
+                    </div>
+                    <div class="comment-text"><?= nl2br(htmlspecialchars($comment['content'])) ?></div>
                 </div>
             <?php endforeach; ?>
         <?php else: ?>

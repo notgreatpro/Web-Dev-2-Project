@@ -1068,3 +1068,145 @@ a:hover {
     
     margin-bottom: 1em;
 }
+.profile-flex {
+    display: flex;
+    align-items: center;
+    gap: 2.2em;
+    margin-bottom: 1.2em;
+}
+
+.profile-avatar-col {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-avatar {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 2px 8px #ffe06655;
+    border: 2.5px solid #ffe066;
+    background: #fff;
+    display: block;
+}
+
+.profile-info-col {
+    flex: 1 1 0;
+}
+
+@media (max-width: 700px) {
+    .profile-flex {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.3em;
+    }
+    .profile-avatar {
+        width: 90px;
+        height: 90px;
+    }
+}
+.comment-row {
+    margin-bottom: 1.5em;
+    padding-bottom: 0.8em;
+    border-bottom: 1px solid #aac;
+}
+.comment-meta {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-bottom: 3px;
+}
+.comment-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ffe066;
+    background: #fff;
+}
+.comment-username {
+    font-weight: bold;
+    color: #23233b;
+    margin-right: 0.8em;
+}
+.comment-date {
+    color: #888;
+    font-size: 0.97em;
+    font-family: monospace;
+    background: #eee;
+    padding: 2px 8px;
+    border-radius: 7px;
+}
+.comment-text {
+    margin-left: 52px;
+    font-size: 1.1em;
+    color: #222;
+    word-break: break-word;
+}
+.profile-flex {
+    display: flex;
+    align-items: center;
+    gap: 2.2em;
+    margin-bottom: 1.2em;
+}
+
+.profile-avatar-col {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-avatar {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 2px 8px #ffe06655;
+    border: 2.5px solid #ffe066;
+    background: #fff;
+    display: block;
+}
+
+.profile-info-col {
+    flex: 1 1 0;
+}
+
+.user-comments-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2em 0;
+}
+.user-comments-list li {
+    margin-bottom: 1.5em;
+    padding-bottom: 0.8em;
+    border-bottom: 1px solid #eee;
+}
+.comment-character {
+    color: #338;
+    margin-right: 1em;
+}
+.comment-time {
+    color: #888;
+    font-size: 0.98em;
+}
+.comment-text {
+    margin-top: 0.25em;
+    font-size: 1.08em;
+    color: #222;
+}
+
+@media (max-width: 700px) {
+    .profile-flex {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.3em;
+    }
+    .profile-avatar {
+        width: 90px;
+        height: 90px;
+    }
+}

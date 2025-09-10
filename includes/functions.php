@@ -32,9 +32,6 @@ function getCharacters($pdo, $search = '', $weapon = '', $nation = '') {
     $stmt->execute($params);
     return $stmt->fetchAll();
 }
-?>
-<?php
-// ...existing functions...
 
 function getCharacterById($pdo, $id) {
     $stmt = $pdo->prepare("SELECT * FROM characters WHERE id = ?");
@@ -42,15 +39,35 @@ function getCharacterById($pdo, $id) {
     return $stmt->fetch();
 }
 
-function getCommentsForCharacter($pdo, $character_id) {
-    $stmt = $pdo->prepare("SELECT * FROM comments WHERE character_id = ? ORDER BY created_at DESC");
-    $stmt->execute([$character_id]);
+// Updated: join users to get username & avatar, and join characters to get character name!
+function getUserCommentsWithCharacters($pdo, $user_id) {
+    $stmt = $pdo->prepare(
+        "SELECT c.content, c.created_at, ch.name AS character_name
+         FROM comments c
+         JOIN characters ch ON c.character_id = ch.id
+         WHERE c.user_id = ?
+         ORDER BY c.created_at DESC"
+    );
+    $stmt->execute([$user_id]);
     return $stmt->fetchAll();
 }
 
 // For adding a new comment (to be used in comment_submit.php)
-function addComment($pdo, $character_id, $content) {
-    $stmt = $pdo->prepare("INSERT INTO comments (character_id, content, created_at) VALUES (?, ?, NOW())");
-    return $stmt->execute([$character_id, $content]);
+function addComment($pdo, $character_id, $content, $user_id) {
+    $stmt = $pdo->prepare("INSERT INTO comments (character_id, user_id, content, created_at) VALUES (?, ?, ?, NOW())");
+    return $stmt->execute([$character_id, $user_id, $content]);
+}
+
+// For character page: get comments with user info
+function getCommentsForCharacter($pdo, $character_id) {
+    $stmt = $pdo->prepare(
+        "SELECT c.content, c.created_at, u.username, u.avatar
+         FROM comments c
+         JOIN users u ON c.user_id = u.id
+         WHERE c.character_id = ?
+         ORDER BY c.created_at DESC"
+    );
+    $stmt->execute([$character_id]);
+    return $stmt->fetchAll();
 }
 ?>
