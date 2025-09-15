@@ -11,8 +11,9 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $user_id = $_SESSION['user_id'];
-// Get user info
-$stmt = $pdo->prepare("SELECT username, avatar, created_at FROM users WHERE id = ?");
+
+// Fetch user info
+$stmt = $pdo->prepare("SELECT username, email, avatar, created_at FROM users WHERE id = ?");
 $stmt->execute([$user_id]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -40,9 +41,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_profile'])) {
     // Avatar upload
     $avatar_filename = $user['avatar'];
     if (isset($_FILES['avatar']) && $_FILES['avatar']['error'] === UPLOAD_ERR_OK) {
-        $allowed_types = ['image/png', 'image/jpeg', 'image/gif'];
+        $allowed_types = ['image/png', 'image/jpeg', 'image/gif', 'image/webp'];
         if (!in_array($_FILES['avatar']['type'], $allowed_types)) {
-            $errors[] = "Only PNG, JPG, or GIF images allowed.";
+            $errors[] = "Only PNG, JPG, GIF, or WEBP images allowed.";
         } else {
             $ext = strtolower(pathinfo($_FILES['avatar']['name'], PATHINFO_EXTENSION));
             $avatar_filename = 'user_' . $user_id . '_' . time() . '.' . $ext;
@@ -70,15 +71,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_profile'])) {
         $sql .= " WHERE id = ?";
         $params[] = $user_id;
         $pdo->prepare($sql)->execute($params);
-        // Update user info for session
+        // Update $user for display
         $user['username'] = $new_username;
         $user['avatar'] = $avatar_filename;
         $success = "Profile updated!";
     }
 }
-
-// Fetch user's comments across all characters
-$user_comments = getUserCommentsWithCharacters($pdo, $user_id);
 ?>
 
 <link rel="stylesheet" href="/public/css/profile.css">
@@ -105,15 +103,22 @@ $user_comments = getUserCommentsWithCharacters($pdo, $user_id);
                 <label for="username"><strong>Username:</strong></label>
                 <input type="text" name="username" id="username" value="<?= htmlspecialchars($user['username']) ?>" required>
                 <label for="avatar"><strong>Profile Avatar:</strong></label>
-                <input type="file" name="avatar" id="avatar" accept="image/png, image/jpeg, image/gif">
+                <input type="file" name="avatar" id="avatar" accept="image/png, image/jpeg, image/gif, image/webp">
                 <button type="submit" name="update_profile" style="margin-top:0.6em;">Update Profile</button>
             </form>
+            <p><strong>Email:</strong> <?= htmlspecialchars($user['email']) ?></p>
             <p><strong>Registered:</strong> <?= htmlspecialchars($user['created_at']) ?></p>
             <a href="change_password.php">Change Password</a>
+            <br>
+            <a href="forgot.php">Forgot Email or Password?</a>
         </div>
     </div>
     <hr>
     <h2>My Comments</h2>
+    <?php
+    // Fetch user's comments
+    $user_comments = getUserCommentsWithCharacters($pdo, $user_id);
+    ?>
     <?php if ($user_comments): ?>
         <ul class="user-comments-list">
             <?php foreach ($user_comments as $comment): ?>
@@ -133,4 +138,5 @@ $user_comments = getUserCommentsWithCharacters($pdo, $user_id);
         <button type="submit" onclick="return confirm('Are you sure you want to delete your account? This cannot be undone.');" class="delete-btn">Delete My Account</button>
     </form>
 </div>
+
 <?php require_once '../includes/footer.php'; ?>

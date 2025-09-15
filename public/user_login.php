@@ -5,6 +5,7 @@ require_once '../includes/header.php';
 require_once '../includes/navbar.php';
 
 $error = '';
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['username'] ?? '');
     $password = $_POST['password'] ?? '';
@@ -38,6 +39,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </label>
         <button type="submit">Login</button>
     </form>
+    <p>
+        <a href="forgot_password.php">Forgot Password?</a><br>
+        <a href="forgot_email.php">Forgot Email?</a>
+    </p>
     <p>No account yet? <a href="sign_up.php">Sign up here</a></p>
 </div>
 <?php require_once '../includes/footer.php'; ?>

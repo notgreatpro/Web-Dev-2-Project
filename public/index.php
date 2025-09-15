@@ -3,7 +3,6 @@ require_once '../config/db.php';
 require_once '../includes/functions.php';
 require_once '../includes/header.php';
 require_once '../includes/navbar.php';
-
 // Get search and sorting parameters
 $search = $_GET['search'] ?? '';
 $sort   = $_GET['sort'] ?? 'name';

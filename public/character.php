@@ -79,11 +79,18 @@ $updated_at = !empty($character['updated_at']) ? date('Y-m-d H:i:s', strtotime($
         <h2>Comments</h2>
         <?php if ($comments): ?>
             <?php foreach ($comments as $comment): ?>
+                <?php
+                // Determine the correct avatar path
+                $avatarFile = (!empty($comment['avatar']) && file_exists(__DIR__ . "/../public/img/" . $comment['avatar']))
+                    ? "/public/img/" . htmlspecialchars($comment['avatar'])
+                    : "/public/img/default_avatar.png";
+                ?>
                 <div class="comment-row">
                     <div class="comment-meta">
                         <img class="comment-avatar"
-                             src="/public/avatars/<?= htmlspecialchars($comment['avatar'] ?? 'default.png') ?>"
-                             alt="<?= htmlspecialchars($comment['username'] ?? 'User') ?>'s avatar">
+                             src="<?= $avatarFile ?>"
+                             alt="<?= htmlspecialchars($comment['username'] ?? 'User') ?>'s avatar"
+                             onerror="this.onerror=null;this.src='/public/img/default_avatar.png';">
                         <span class="comment-username"><?= htmlspecialchars($comment['username'] ?? 'Unknown') ?></span>
                         <span class="comment-date"><?= htmlspecialchars($comment['created_at']) ?></span>
                     </div>

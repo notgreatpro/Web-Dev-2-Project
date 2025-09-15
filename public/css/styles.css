@@ -902,6 +902,7 @@ a:hover {
 }
 
 .signup-form input[type="text"],
+.signup-form input[type="email"],
 .signup-form input[type="password"] {
     width: 100%;
     padding: 12px 14px;
@@ -917,6 +918,7 @@ a:hover {
 }
 
 .signup-form input[type="text"]:focus,
+.signup-form input[type="email"]:focus,
 .signup-form input[type="password"]:focus {
     border-color: #ffd700;
     outline: none;
@@ -1135,7 +1137,7 @@ a:hover {
 .comment-date {
     color: #888;
     font-size: 0.97em;
-    font-family: monospace;
+    font-family: HSR Font;
     background: #eee;
     padding: 2px 8px;
     border-radius: 7px;
@@ -1211,7 +1213,7 @@ a:hover {
     }
 }
 
-/* Responsive NAVBAR and SORT BAR (ADD THIS SECTION) */
+
 @media (max-width: 700px) {
   .navbar {
     flex-direction: column;
@@ -1265,6 +1267,100 @@ a:hover {
 }
 .error { color: #c00; margin-bottom: 0.6em; }
 .success { color: #2a6c2a; margin-bottom: 0.6em; }
+.change-password-container {
+    max-width: 500px;
+    margin: 2.5em auto;
+    background: #fffef5;
+    border-radius: 14px;
+    box-shadow: 0 2px 16px #ffe06622;
+    padding: 2.5em 2.2em 2em 2.2em;
+}
+
+.change-password-container h2 {
+    font-family: 'Hoyo Font', serif;
+    font-size: 2.2em;
+    margin-bottom: 0.9em;
+    color: #23233b;
+    font-weight: 800;
+}
+
+.change-password-form label {
+    display: block;
+    font-weight: bold;
+    color: #23233b;
+    font-size: 1.25em;
+    font-family: 'Hoyo Font', serif;
+    margin-bottom: 0.3em;
+    letter-spacing: 0.5px;
+}
+
+.change-password-form input[type="password"] {
+    padding: 7px 12px;
+    font-size: 1.13em;
+    border: 2px solid #23233b;
+    border-radius: 5px;
+    font-family: 'Hoyo Font', Arial, sans-serif;
+    color: #23233b;
+    background: #fff;
+    outline: none;
+    transition: border-color 0.18s, box-shadow 0.18s;
+    margin-bottom: 1em;
+    width: 320px;
+    box-sizing: border-box;
+    display: inline-block;
+}
+
+.change-password-form input[type="password"]:focus {
+    border: 2px solid #ffe066;
+    background: #fffae6;
+}
+
+.change-password-btn {
+    background: #ffe066;
+    color: #23233b;
+    border: none;
+    border-radius: 8px;
+    padding: 0.6em 1.6em;
+    font-size: 1.2em;
+    font-family: 'Hoyo Font', serif;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 0.7em;
+    box-shadow: 0 2px 8px #23233b22;
+    transition: background 0.22s, color 0.15s;
+    display: block;
+}
+
+.change-password-btn:hover {
+    background: #23233b;
+    color: #ffe066;
+}
+
+.change-password-container .success {
+    background: #e3ffde;
+    color: #298d31;
+    border: 1px solid #298d31;
+    border-radius: 7px;
+    padding: 9px 1em;
+    margin-bottom: 1.2em;
+    font-size: 1em;
+}
+
+.change-password-container .error {
+    background: #ffe0e0;
+    color: #b54747;
+    border: 1px solid #b54747;
+    border-radius: 7px;
+    padding: 9px 1em;
+    margin-bottom: 1.2em;
+    font-size: 1em;
+}
+
+.change-password-container p {
+    font-size: 1.13em;
+    font-family: 'Hoyo Font', serif;
+    margin-top: 1.3em;
+}
 .change-pass-btn {
     background: #ffe066;
     color: #23233b;
@@ -1301,4 +1397,30 @@ a:hover {
 .delete-btn:hover {
     background: #140908;
     color: #d43422;
+}
+/* Add to your CSS */
+.forgot-btn,
+.feedback-form button[type="submit"],
+.your-custom-btn-class {
+    background: #ffe066;
+    color: #23233b;
+    border: none;
+    border-radius: 8px;
+    padding: 0.6em 1.3em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px #23233b22;
+    font-size: 1em;
+    width: fit-content;
+    font-family: Hoyo Font;
+    margin-top: 0.7em;
+}
+
+.forgot-btn:hover,
+.feedback-form button[type="submit"]:hover,
+.your-custom-btn-class:hover {
+    background: #23233b;
+    color: #ffe066;
+    box-shadow: 0 4px 16px #23233b33;
 }

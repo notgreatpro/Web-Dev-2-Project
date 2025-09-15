@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $mail->Port = 465;                                     
 
             // Set sender info
-            $mail->setFrom('kylearahan19@gamil.com', 'Kyle Arahan'); 
+            $mail->setFrom('kylearahan19@gmail.com', 'Kyle Arahan'); 
             $mail->addAddress('genshinexplorerofficial@gmail.com');             
 
             $mail->Subject = 'Feedback from ' . $name;
