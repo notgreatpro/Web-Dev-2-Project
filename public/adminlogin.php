@@ -1,7 +1,6 @@
 <?php
 session_start();
 require_once '../config/db.php';
-require_once '../includes/captcha.php';
 
 $error = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -9,7 +8,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = trim($_POST['password'] ?? '');
     $captcha = trim($_POST['captcha'] ?? '');
 
-    if (!checkCaptcha($captcha)) {
+    // Check CAPTCHA
+    if (empty($captcha) || strtolower($captcha) !== strtolower($_SESSION['captcha_code'] ?? '')) {
         $error = "Incorrect CAPTCHA code.";
     } else {
         $admin_user = 'Teyvat';
@@ -17,6 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($username === $admin_user && $password === $admin_pass) {
             $_SESSION['admin_logged_in'] = true;
+            unset($_SESSION['captcha_code']); // Prevent reuse after login
             header('Location: ../admin/dashboard.php');
             exit;
         } else {
@@ -26,8 +27,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // On GET: generate new CAPTCHA
-$captcha_code = generateCaptchaString(6);
-$_SESSION['captcha_code'] = $captcha_code;
+if ($_SERVER['REQUEST_METHOD'] !== 'POST' || $error) {
+    // Regenerate CAPTCHA for each GET or after error
+    $code = substr(str_shuffle('ABCDEFGHJKLMNPQRSTUVWXYZ23456789'), 0, 6);
+    $_SESSION['captcha_code'] = $code;
+}
 ?>
 
 <?php require_once '../includes/header.php'; ?>
@@ -43,8 +47,8 @@ $_SESSION['captcha_code'] = $captcha_code;
         <label>Password:
             <input type="password" name="password" required>
         </label>
-        <label style="font-weight:bold; color:#23233b; font-size:1.15em;">CAPTCHA:
-            <span class="captcha" style="font-family:Hoyo Font,serif; font-size:1.35em; letter-spacing:2px; color:#23233b; background:transparent; font-weight:800;"><?= htmlspecialchars($captcha_code) ?></span>
+        <label style="font-weight:bold; color:#23233b; font-size:1.15em;">CAPTCHA:<br>
+            <img src="../includes/captcha.php" alt="CAPTCHA" style="margin-top:6px; margin-bottom:6px;" id="captcha-img">
             <input 
                 type="text" 
                 name="captcha" 
