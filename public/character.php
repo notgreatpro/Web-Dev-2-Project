@@ -13,6 +13,9 @@ if ($id <= 0) {
     exit;
 }
 
+// Increment views
+incrementCharacterViews($pdo, $id);
+
 // Fetch character data
 $character = getCharacterById($pdo, $id);
 if (!$character) {
@@ -26,19 +29,25 @@ $imageFile = $character['image'] ?: "default.png";
 $imgPath = __DIR__ . "/img/" . $imageFile;
 $img = file_exists($imgPath) ? "img/" . $imageFile : "img/default.png";
 
-// Fetch comments (now includes username and avatar)
+// Fetch comments (includes username and avatar)
 $comments = getCommentsForCharacter($pdo, $id);
 
 // Fetch character timestamps 
 $created_at = !empty($character['created_at']) ? date('Y-m-d H:i:s', strtotime($character['created_at'])) : 'Unknown';
 $updated_at = !empty($character['updated_at']) ? date('Y-m-d H:i:s', strtotime($character['updated_at'])) : 'Never';
+
+// Check if logged-in user already liked this character
+$userLiked = false;
+if (isset($_SESSION['user_logged_in'], $_SESSION['user_id']) && $_SESSION['user_logged_in'] === true) {
+    $userLiked = hasUserLikedCharacter($pdo, $_SESSION['user_id'], $id);
+}
 ?>
 
 <link rel="stylesheet" href="character-detail.css">
 
 <div class="container">
     <div class="character-detail">
-        <!-- Left column: image, stars, quote, timestamps -->
+        <!-- Left column: image, stars, quote, timestamps, likes/views -->
         <div class="character-left-col">
             <div>
                 <img src="<?= $img ?>" alt="<?= htmlspecialchars($character['name']) ?>" class="character-img-detail">
@@ -52,6 +61,23 @@ $updated_at = !empty($character['updated_at']) ? date('Y-m-d H:i:s', strtotime($
             <div class="character-timestamps">
                 <span>Added: <b><?= $created_at ?></b></span><br>
                 <span>Last Edited: <b><?= $updated_at ?></b></span>
+            </div>
+            <div class="character-likes-views">
+                <span><b>Likes:</b> <?= intval($character['likes']) ?></span><br>
+                <span><b>Views:</b> <?= intval($character['views']) ?></span>
+                <?php if (isset($_SESSION['user_logged_in'], $_SESSION['user_id']) && $_SESSION['user_logged_in'] === true): ?>
+                    <?php if ($userLiked): ?>
+                        <form method="post" action="unlike_character.php" style="margin-top:8px;">
+                            <input type="hidden" name="character_id" value="<?= $id ?>">
+                            <button type="submit" class="like-btn">👎 Unlike</button>
+                        </form>
+                    <?php else: ?>
+                        <form method="post" action="like_character.php" style="margin-top:8px;">
+                            <input type="hidden" name="character_id" value="<?= $id ?>">
+                            <button type="submit" class="like-btn">👍 Like</button>
+                        </form>
+                    <?php endif; ?>
+                <?php endif; ?>
             </div>
         </div>
         <!-- Middle column: name and stats -->
@@ -80,7 +106,6 @@ $updated_at = !empty($character['updated_at']) ? date('Y-m-d H:i:s', strtotime($
         <?php if ($comments): ?>
             <?php foreach ($comments as $comment): ?>
                 <?php
-                // Determine the correct avatar path
                 $avatarFile = (!empty($comment['avatar']) && file_exists(__DIR__ . "/../public/img/" . $comment['avatar']))
                     ? "/public/img/" . htmlspecialchars($comment['avatar'])
                     : "/public/img/default_avatar.png";

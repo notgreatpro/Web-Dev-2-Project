@@ -1424,3 +1424,57 @@ a:hover {
     color: #ffe066;
     box-shadow: 0 4px 16px #23233b33;
 }
+
+.character-left-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Hoyo Font', 'Impact', 'Arial Black', Arial, sans-serif;
+}
+
+.character-timestamps {
+    margin-top: 12px;
+    margin-bottom: 24px;
+    text-align: left;
+    width: 100%;
+    font-family: 'Hoyo Font', 'Impact', 'Arial Black', Arial, sans-serif;
+    font-size: 1.08em;
+}
+
+.character-likes-views {
+    margin-top: 0;
+    margin-bottom: 16px;
+    padding: 12px 0 0 0;
+    width: 100%;
+    text-align: left;
+    font-family: HSR Font;
+    font-size: 1.09em;
+}
+
+.cv-label {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 1.17em;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+.like-btn {
+    background: #ffe066;
+    border: none;
+    padding: 8px 28px;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    font-family: HSR Font;
+    font-size: 1.07em;
+    transition: background 0.2s;
+}
+.like-btn:hover {
+    background: #ffd700;
+}
+.like-btn[disabled] {
+    background: #ccc;
+    cursor: not-allowed;
+}

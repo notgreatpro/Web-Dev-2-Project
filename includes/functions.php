@@ -70,4 +70,36 @@ function getCommentsForCharacter($pdo, $character_id) {
     $stmt->execute([$character_id]);
     return $stmt->fetchAll();
 }
+
+// ----- Likes/Views Functions -----
+
+// Increment view count for a character
+function incrementCharacterViews($pdo, $character_id) {
+    $stmt = $pdo->prepare("UPDATE characters SET views = views + 1 WHERE id = ?");
+    return $stmt->execute([$character_id]);
+}
+
+// Increment like count for a character (use with duplicate-check)
+function incrementCharacterLikes($pdo, $character_id) {
+    $stmt = $pdo->prepare("UPDATE characters SET likes = likes + 1 WHERE id = ?");
+    return $stmt->execute([$character_id]);
+}
+
+// Check if user already liked this character
+function hasUserLikedCharacter($pdo, $user_id, $character_id) {
+    $stmt = $pdo->prepare("SELECT id FROM character_likes WHERE user_id = ? AND character_id = ?");
+    $stmt->execute([$user_id, $character_id]);
+    return $stmt->fetch() ? true : false;
+}
+
+// Add a like record for this user/character
+function addUserLikeCharacter($pdo, $user_id, $character_id) {
+    $stmt = $pdo->prepare("INSERT INTO character_likes (user_id, character_id) VALUES (?, ?)");
+    return $stmt->execute([$user_id, $character_id]);
+}
+
+function removeUserLikeCharacter($pdo, $user_id, $character_id) {
+    $stmt = $pdo->prepare("DELETE FROM character_likes WHERE user_id = ? AND character_id = ?");
+    return $stmt->execute([$user_id, $character_id]);
+}
 ?>
