@@ -5,6 +5,10 @@ require_once '../includes/admin_header.php';
 
 // Initial values
 $name = $vision = $weapon = $rarity = $nation = $description = $affiliation = $birthday = $quote = "";
+$normal_attack_name = $normal_attack_description = "";
+$skill_name = $skill_description = $burst_name = $burst_description = "";
+$passive1_name = $passive1_description = $passive2_name = $passive2_description = "";
+$utility_passive_name = $utility_passive_description = "";
 $imageFileName = null;
 $errors = [];
 
@@ -19,6 +23,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $affiliation = trim($_POST["affiliation"] ?? "");
     $birthday = trim($_POST["birthday"] ?? "");
     $quote = trim($_POST["quote"] ?? "");
+    $normal_attack_name = trim($_POST["normal_attack_name"] ?? "");
+    $normal_attack_description = trim($_POST["normal_attack_description"] ?? "");
+    $skill_name = trim($_POST["skill_name"] ?? "");
+    $skill_description = trim($_POST["skill_description"] ?? "");
+    $burst_name = trim($_POST["burst_name"] ?? "");
+    $burst_description = trim($_POST["burst_description"] ?? "");
+    $passive1_name = trim($_POST["passive1_name"] ?? "");
+    $passive1_description = trim($_POST["passive1_description"] ?? "");
+    $passive2_name = trim($_POST["passive2_name"] ?? "");
+    $passive2_description = trim($_POST["passive2_description"] ?? "");
+    $utility_passive_name = trim($_POST["utility_passive_name"] ?? "");
+    $utility_passive_description = trim($_POST["utility_passive_description"] ?? "");
 
     // Validation
     if ($name === "")   $errors[] = "Name is required.";
@@ -50,9 +66,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     if (empty($errors)) {
-        $stmt = $pdo->prepare("INSERT INTO characters (`name`, `vision`, `signature weapons`, `character rarity`, `nations`, `description`, `affiliation`, `birthday`, `image`, `quote`)
-                               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->execute([$name, $vision, $weapon, $rarity, $nation, $description, $affiliation, $birthday, $imageFileName, $quote]);
+        $stmt = $pdo->prepare("INSERT INTO characters (
+            `name`, `vision`, `signature weapons`, `character rarity`, `nations`, `description`, `affiliation`, `birthday`, `image`, `quote`,
+            `normal_attack_name`, `normal_attack_description`,
+            `skill_name`, `skill_description`, `burst_name`, `burst_description`,
+            `passive1_name`, `passive1_description`, `passive2_name`, `passive2_description`,
+            `utility_passive_name`, `utility_passive_description`
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->execute([
+            $name, $vision, $weapon, $rarity, $nation, $description, $affiliation, $birthday, $imageFileName, $quote,
+            $normal_attack_name, $normal_attack_description,
+            $skill_name, $skill_description, $burst_name, $burst_description,
+            $passive1_name, $passive1_description, $passive2_name, $passive2_description,
+            $utility_passive_name, $utility_passive_description
+        ]);
         header("Location: manage_characters.php");
         exit;
     }
@@ -70,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <table class="admin-form-table">
             <tr><th>Name</th><td><input type="text" name="name" value="<?= htmlspecialchars($name) ?>" required></td></tr>
             <tr><th>Vision</th><td><input type="text" name="vision" value="<?= htmlspecialchars($vision) ?>" required></td></tr>
-            <tr><th> Signature Weapon</th><td><input type="text" name="weapon" value="<?= htmlspecialchars($weapon) ?>" required></td></tr>
+            <tr><th>Signature Weapon</th><td><input type="text" name="weapon" value="<?= htmlspecialchars($weapon) ?>" required></td></tr>
             <tr><th>Rarity</th>
                 <td>
                     <select name="rarity" required>
@@ -89,6 +116,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 </td>
             </tr>
             <tr><th>Character Image</th><td><input type="file" name="image" accept="image/*"></td></tr>
+            <tr><th>Normal Attack Name</th><td><input type="text" name="normal_attack_name" value="<?= htmlspecialchars($normal_attack_name) ?>"></td></tr>
+            <tr><th>Normal Attack Description</th><td><textarea name="normal_attack_description" rows="2" style="width:100%;"><?= htmlspecialchars($normal_attack_description) ?></textarea></td></tr>
+            <tr><th>Elemental Skill Name</th><td><input type="text" name="skill_name" value="<?= htmlspecialchars($skill_name) ?>"></td></tr>
+            <tr><th>Elemental Skill Description</th><td><textarea name="skill_description" rows="2" style="width:100%;"><?= htmlspecialchars($skill_description) ?></textarea></td></tr>
+            <tr><th>Elemental Burst Name</th><td><input type="text" name="burst_name" value="<?= htmlspecialchars($burst_name) ?>"></td></tr>
+            <tr><th>Elemental Burst Description</th><td><textarea name="burst_description" rows="2" style="width:100%;"><?= htmlspecialchars($burst_description) ?></textarea></td></tr>
+            <tr><th>1st Ascension Passive Name</th><td><input type="text" name="passive1_name" value="<?= htmlspecialchars($passive1_name) ?>"></td></tr>
+            <tr><th>1st Ascension Passive Description</th><td><textarea name="passive1_description" rows="2" style="width:100%;"><?= htmlspecialchars($passive1_description) ?></textarea></td></tr>
+            <tr><th>4th Ascension Passive Name</th><td><input type="text" name="passive2_name" value="<?= htmlspecialchars($passive2_name) ?>"></td></tr>
+            <tr><th>4th Ascension Passive Description</th><td><textarea name="passive2_description" rows="2" style="width:100%;"><?= htmlspecialchars($passive2_description) ?></textarea></td></tr>
+            <tr><th>Utility Passive Name</th><td><input type="text" name="utility_passive_name" value="<?= htmlspecialchars($utility_passive_name) ?>"></td></tr>
+            <tr><th>Utility Passive Description</th><td><textarea name="utility_passive_description" rows="2" style="width:100%;"><?= htmlspecialchars($utility_passive_description) ?></textarea></td></tr>
         </table>
         <br>
         <div class="admin-form-actions">

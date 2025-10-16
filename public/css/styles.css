@@ -1429,7 +1429,7 @@ a:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: 'Hoyo Font', 'Impact', 'Arial Black', Arial, sans-serif;
+    font-family: Hoyo Font;
 }
 
 .character-timestamps {
@@ -1437,7 +1437,7 @@ a:hover {
     margin-bottom: 24px;
     text-align: left;
     width: 100%;
-    font-family: 'Hoyo Font', 'Impact', 'Arial Black', Arial, sans-serif;
+    font-family: Hoyo Font;
     font-size: 1.08em;
 }
 
@@ -1477,4 +1477,32 @@ a:hover {
 .like-btn[disabled] {
     background: #ccc;
     cursor: not-allowed;
+}
+
+.character-skills {
+    margin-top: 36px;
+    margin-bottom: 24px;
+    background: #f6f2ff;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px #d2d2ff33;
+    padding: 18px 24px;
+}
+.character-skills h2 {
+    font-family: 'Hoyo Font', 'Impact', 'Arial Black', Arial, sans-serif;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+.talent-block {
+    margin-bottom: 18px;
+}
+.talent-block h3 {
+    color: #3b2c6b;
+    font-size: 1.09em;
+    font-family: 'Hoyo Font', 'Impact', 'Arial Black', Arial, sans-serif;
+    margin-bottom: 4px;
+}
+.talent-block p {
+    margin-left: 12px;
+    font-size: 1.02em;
+    color: #222;
 }

@@ -30,6 +30,18 @@ $affiliation = $character["affiliation"];
 $birthday = $character["birthday"];
 $imageFileName = $character["image"];
 $quote = $character["quote"];
+$normal_attack_name = $character["normal_attack_name"];
+$normal_attack_description = $character["normal_attack_description"];
+$skill_name = $character["skill_name"];
+$skill_description = $character["skill_description"];
+$burst_name = $character["burst_name"];
+$burst_description = $character["burst_description"];
+$passive1_name = $character["passive1_name"];
+$passive1_description = $character["passive1_description"];
+$passive2_name = $character["passive2_name"];
+$passive2_description = $character["passive2_description"];
+$utility_passive_name = $character["utility_passive_name"];
+$utility_passive_description = $character["utility_passive_description"];
 $errors = [];
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -42,6 +54,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $affiliation = trim($_POST["affiliation"] ?? "");
     $birthday = trim($_POST["birthday"] ?? "");
     $quote = trim($_POST["quote"] ?? "");
+    $normal_attack_name = trim($_POST["normal_attack_name"] ?? "");
+    $normal_attack_description = trim($_POST["normal_attack_description"] ?? "");
+    $skill_name = trim($_POST["skill_name"] ?? "");
+    $skill_description = trim($_POST["skill_description"] ?? "");
+    $burst_name = trim($_POST["burst_name"] ?? "");
+    $burst_description = trim($_POST["burst_description"] ?? "");
+    $passive1_name = trim($_POST["passive1_name"] ?? "");
+    $passive1_description = trim($_POST["passive1_description"] ?? "");
+    $passive2_name = trim($_POST["passive2_name"] ?? "");
+    $passive2_description = trim($_POST["passive2_description"] ?? "");
+    $utility_passive_name = trim($_POST["utility_passive_name"] ?? "");
+    $utility_passive_description = trim($_POST["utility_passive_description"] ?? "");
 
     // Image upload
     if (isset($_FILES["image"]) && $_FILES["image"]["error"] === UPLOAD_ERR_OK) {
@@ -69,8 +93,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     if (empty($errors)) {
-        $stmt = $pdo->prepare("UPDATE characters SET `name`=?, `vision`=?, `signature weapons`=?, `character rarity`=?, `nations`=?, `description`=?, `affiliation`=?, `birthday`=?, `image`=?, `quote`=? WHERE id=?");
-        $stmt->execute([$name, $vision, $weapon, $rarity, $nation, $description, $affiliation, $birthday, $imageFileName, $quote, $id]);
+        $stmt = $pdo->prepare("UPDATE characters SET 
+            `name`=?, `vision`=?, `signature weapons`=?, `character rarity`=?, `nations`=?, `description`=?, `affiliation`=?, `birthday`=?, `image`=?, `quote`=?,
+            `normal_attack_name`=?, `normal_attack_description`=?,
+            `skill_name`=?, `skill_description`=?, `burst_name`=?, `burst_description`=?,
+            `passive1_name`=?, `passive1_description`=?, `passive2_name`=?, `passive2_description`=?,
+            `utility_passive_name`=?, `utility_passive_description`=?
+            WHERE id=?");
+        $stmt->execute([
+            $name, $vision, $weapon, $rarity, $nation, $description, $affiliation, $birthday, $imageFileName, $quote,
+            $normal_attack_name, $normal_attack_description,
+            $skill_name, $skill_description, $burst_name, $burst_description,
+            $passive1_name, $passive1_description, $passive2_name, $passive2_description,
+            $utility_passive_name, $utility_passive_description,
+            $id
+        ]);
         header("Location: manage_characters.php");
         exit;
     }
@@ -117,6 +154,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <?php endif; ?>
                 </td>
             </tr>
+            <tr><th>Normal Attack Name</th><td><input type="text" name="normal_attack_name" value="<?= htmlspecialchars($normal_attack_name) ?>"></td></tr>
+            <tr><th>Normal Attack Description</th><td><textarea name="normal_attack_description" rows="2" style="width:100%;"><?= htmlspecialchars($normal_attack_description) ?></textarea></td></tr>
+            <tr><th>Elemental Skill Name</th><td><input type="text" name="skill_name" value="<?= htmlspecialchars($skill_name) ?>"></td></tr>
+            <tr><th>Elemental Skill Description</th><td><textarea name="skill_description" rows="2" style="width:100%;"><?= htmlspecialchars($skill_description) ?></textarea></td></tr>
+            <tr><th>Elemental Burst Name</th><td><input type="text" name="burst_name" value="<?= htmlspecialchars($burst_name) ?>"></td></tr>
+            <tr><th>Elemental Burst Description</th><td><textarea name="burst_description" rows="2" style="width:100%;"><?= htmlspecialchars($burst_description) ?></textarea></td></tr>
+            <tr><th>1st Ascension Passive Name</th><td><input type="text" name="passive1_name" value="<?= htmlspecialchars($passive1_name) ?>"></td></tr>
+            <tr><th>1st Ascension Passive Description</th><td><textarea name="passive1_description" rows="2" style="width:100%;"><?= htmlspecialchars($passive1_description) ?></textarea></td></tr>
+            <tr><th>4th Ascension Passive Name</th><td><input type="text" name="passive2_name" value="<?= htmlspecialchars($passive2_name) ?>"></td></tr>
+            <tr><th>4th Ascension Passive Description</th><td><textarea name="passive2_description" rows="2" style="width:100%;"><?= htmlspecialchars($passive2_description) ?></textarea></td></tr>
+            <tr><th>Utility Passive Name</th><td><input type="text" name="utility_passive_name" value="<?= htmlspecialchars($utility_passive_name) ?>"></td></tr>
+            <tr><th>Utility Passive Description</th><td><textarea name="utility_passive_description" rows="2" style="width:100%;"><?= htmlspecialchars($utility_passive_description) ?></textarea></td></tr>
         </table>
         <br>
         <div class="admin-form-actions">
