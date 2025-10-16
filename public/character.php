@@ -47,7 +47,7 @@ if (isset($_SESSION['user_logged_in'], $_SESSION['user_id']) && $_SESSION['user_
 
 <div class="container">
     <div class="character-detail">
-        <!-- Left column: image, stars, quote, timestamps, likes/views -->
+        <!-- Left column: image, stars, quote, timestamps -->
         <div class="character-left-col">
             <div>
                 <img src="<?= $img ?>" alt="<?= htmlspecialchars($character['name']) ?>" class="character-img-detail">
@@ -58,26 +58,9 @@ if (isset($_SESSION['user_logged_in'], $_SESSION['user_id']) && $_SESSION['user_
                     "<?= htmlspecialchars($character['quote']) ?>"
                 </div>
             <?php endif; ?>
-            <div class="character-timestamps">
+            <div class="character-timestamps" style="margin-bottom:0;">
                 <span style="color:#abd4d4;">Added: <b><?= $created_at ?></b></span><br>
                 <span style="color:#abd4d4;">Last Edited: <b><?= $updated_at ?></b></span>
-            </div>
-            <div class="character-likes-views">
-                <span class="cv-label"><b>Likes:</b> <?= intval($character['likes']) ?></span><br>
-                <span class="cv-label"><b>Views:</b> <?= intval($character['views']) ?></span>
-                <?php if (isset($_SESSION['user_logged_in'], $_SESSION['user_id']) && $_SESSION['user_logged_in'] === true): ?>
-                    <?php if ($userLiked): ?>
-                        <form method="post" action="unlike_character.php" style="margin-top:10px;">
-                            <input type="hidden" name="character_id" value="<?= $id ?>">
-                            <button type="submit" class="like-btn">👎 Unlike</button>
-                        </form>
-                    <?php else: ?>
-                        <form method="post" action="like_character.php" style="margin-top:10px;">
-                            <input type="hidden" name="character_id" value="<?= $id ?>">
-                            <button type="submit" class="like-btn">👍 Like</button>
-                        </form>
-                    <?php endif; ?>
-                <?php endif; ?>
             </div>
         </div>
         <!-- Middle column: name and stats -->
@@ -113,40 +96,71 @@ if (isset($_SESSION['user_logged_in'], $_SESSION['user_id']) && $_SESSION['user_
             <h2>Skills & Talents</h2>
             <?php if (!empty($character['normal_attack_name'])): ?>
                 <div class="talent-block">
-                    <h3>Normal Attack: <?= htmlspecialchars($character['normal_attack_name']) ?></h3>
+                    <h3 style="color:#4c398d;">
+                        Normal Attack: <?= htmlspecialchars($character['normal_attack_name']) ?>
+                    </h3>
                     <p><?= nl2br(htmlspecialchars($character['normal_attack_description'])) ?></p>
                 </div>
             <?php endif; ?>
             <?php if (!empty($character['skill_name'])): ?>
                 <div class="talent-block">
-                    <h3>Elemental Skill: <?= htmlspecialchars($character['skill_name']) ?></h3>
+                    <h3 style="color:#4c398d;">
+                        Elemental Skill: <?= htmlspecialchars($character['skill_name']) ?>
+                    </h3>
                     <p><?= nl2br(htmlspecialchars($character['skill_description'])) ?></p>
                 </div>
             <?php endif; ?>
             <?php if (!empty($character['burst_name'])): ?>
                 <div class="talent-block">
-                    <h3>Elemental Burst: <?= htmlspecialchars($character['burst_name']) ?></h3>
+                    <h3 style="color:#4c398d;">
+                        Elemental Burst: <?= htmlspecialchars($character['burst_name']) ?>
+                    </h3>
                     <p><?= nl2br(htmlspecialchars($character['burst_description'])) ?></p>
                 </div>
             <?php endif; ?>
             <?php if (!empty($character['passive1_name'])): ?>
                 <div class="talent-block">
-                    <h3>1st Ascension Passive: <?= htmlspecialchars($character['passive1_name']) ?></h3>
+                    <h3 style="color:#4c398d;">
+                        1st Ascension Passive: <?= htmlspecialchars($character['passive1_name']) ?>
+                    </h3>
                     <p><?= nl2br(htmlspecialchars($character['passive1_description'])) ?></p>
                 </div>
             <?php endif; ?>
             <?php if (!empty($character['passive2_name'])): ?>
                 <div class="talent-block">
-                    <h3>4th Ascension Passive: <?= htmlspecialchars($character['passive2_name']) ?></h3>
+                    <h3 style="color:#4c398d;">
+                        4th Ascension Passive: <?= htmlspecialchars($character['passive2_name']) ?>
+                    </h3>
                     <p><?= nl2br(htmlspecialchars($character['passive2_description'])) ?></p>
                 </div>
             <?php endif; ?>
             <?php if (!empty($character['utility_passive_name'])): ?>
                 <div class="talent-block">
-                    <h3>Utility Passive: <?= htmlspecialchars($character['utility_passive_name']) ?></h3>
+                    <h3 style="color:#4c398d;">
+                        Utility Passive: <?= htmlspecialchars($character['utility_passive_name']) ?>
+                    </h3>
                     <p><?= nl2br(htmlspecialchars($character['utility_passive_description'])) ?></p>
                 </div>
             <?php endif; ?>
+
+            <!-- Likes & Views at the bottom of Skills/Talents -->
+            <div class="character-likes-views" style="margin-top:32px;">
+                <span class="cv-label"><b>Likes:</b> <?= intval($character['likes']) ?></span><br>
+                <span class="cv-label"><b>Views:</b> <?= intval($character['views']) ?></span>
+                <?php if (isset($_SESSION['user_logged_in'], $_SESSION['user_id']) && $_SESSION['user_logged_in'] === true): ?>
+                    <?php if ($userLiked): ?>
+                        <form method="post" action="unlike_character.php" style="margin-top:10px;">
+                            <input type="hidden" name="character_id" value="<?= $id ?>">
+                            <button type="submit" class="like-btn">👎 Unlike</button>
+                        </form>
+                    <?php else: ?>
+                        <form method="post" action="like_character.php" style="margin-top:10px;">
+                            <input type="hidden" name="character_id" value="<?= $id ?>">
+                            <button type="submit" class="like-btn">👍 Like</button>
+                        </form>
+                    <?php endif; ?>
+                <?php endif; ?>
+            </div>
         </div>
     <?php endif; ?>
 
@@ -188,5 +202,3 @@ if (isset($_SESSION['user_logged_in'], $_SESSION['user_id']) && $_SESSION['user_
         <?php endif; ?>
     </div>
 </div>
-
-<?php require_once '../includes/footer.php'; ?>
