@@ -54,7 +54,6 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST' || $error) {
                 name="captcha" 
                 required 
                 placeholder="Enter code above" 
-                style="margin-top:0.6em; font-family:Hoyo Font,serif; font-size:1.15em; letter-spacing:1px; border:2px solid #ffe066; background:#fff; border-radius:8px; padding:12px; width:100%; box-sizing:border-box; color:#23233b; font-weight:600;"
             >
         </label>
         <button type="submit">Login</button>

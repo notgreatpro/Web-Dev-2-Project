@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST' || $error) {
         </label>
 
         <div style="display:flex; gap:12px; align-items:center;">
-            <button type="submit" class="user-login-form button" style="padding:10px 16px; border-radius:8px; background:#21dac5; color:#fff; border:none; font-weight:800;">Login</button>
+            <button type="submit" class="user-login-form button">Login</button>
         </div>
         <p>Already have an account? <a href="user_login.php">Login here</a></p>
 
