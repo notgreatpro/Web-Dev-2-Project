@@ -1,27 +1,33 @@
 <?php
 session_start();
-require_once '../config/db.php';
-require_once '../includes/header.php';
-require_once '../includes/navbar.php';
+
+// Adjust paths relative to this file (public/)
+require_once __DIR__ . '/../config/db.php';
+require_once __DIR__ . '/../includes/header.php';
+require_once __DIR__ . '/../includes/navbar.php';
 
 $error = '';
-
+// Handle POST (login attempt)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // CAPTCHA validation
+    $username = trim($_POST['username'] ?? '');
+    $password = $_POST['password'] ?? '';
     $captcha_input = trim($_POST['captcha'] ?? '');
+
+    // CAPTCHA validation (case-insensitive)
     if (empty($captcha_input) || strtolower($captcha_input) !== strtolower($_SESSION['captcha_code'] ?? '')) {
         $error = "Incorrect CAPTCHA code.";
     } else {
-        $username = trim($_POST['username'] ?? '');
-        $password = $_POST['password'] ?? '';
-
+        // Check username/password against users table
         $stmt = $pdo->prepare("SELECT id, password FROM users WHERE username = ?");
         $stmt->execute([$username]);
         $user = $stmt->fetch();
 
         if ($user && password_verify($password, $user['password'])) {
+            // Successful login
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_logged_in'] = true;
+            // prevent reuse of captcha after success
+            unset($_SESSION['captcha_code']);
             header('Location: index.php');
             exit;
         } else {
@@ -29,38 +35,61 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
+
+// On GET or when there's an error, regenerate the CAPTCHA code so the image updates only then
+if ($_SERVER['REQUEST_METHOD'] !== 'POST' || $error) {
+    // Create a 6-character captcha code (no ambiguous chars)
+    $code = substr(str_shuffle('ABCDEFGHJKLMNPQRSTUVWXYZ23456789'), 0, 6);
+    $_SESSION['captcha_code'] = $code;
+}
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>User Login</title>
-    <link rel="stylesheet" href="css/user_login.css">
-</head>
-<body>
+
 <div class="user-login-container">
-    <h2>User Login</h2>
-    <?php if ($error): ?>
-        <div class="error"><?= htmlspecialchars($error) ?></div>
-    <?php endif; ?>
-    <form class="user-login-form" method="post">
-        <label>Username:
-            <input type="text" name="username" required>
+    <form method="post" class="login-form" style="margin:auto;">
+        <h2>User Login</h2>
+
+        <?php if ($error): ?>
+            <div class="error" style="margin-bottom:12px;"><?= htmlspecialchars($error) ?></div>
+        <?php endif; ?>
+
+        <label style="display:block; margin-bottom:10px;">
+            Username:
+            <input type="text" name="username" required style="width:100%; padding:10px; border-radius:8px; border:1.5px solid #d9d9e3;">
         </label>
-        <label>Password:
-            <input type="password" name="password" required>
+
+        <label style="display:block; margin-bottom:10px;">
+            Password:
+            <input type="password" name="password" required style="width:100%; padding:10px; border-radius:8px; border:1.5px solid #d9d9e3;">
         </label>
-        <label>CAPTCHA:
-            <img src="../includes/captcha.php" alt="CAPTCHA" style="display:block; margin:8px 0;" id="captcha-img">
-            <input type="text" name="captcha" required placeholder="Enter code above">
+
+        <label style="display:block; margin-bottom:8px; font-weight:bold;">
+            CAPTCHA:
         </label>
-        <button type="submit">Login</button>
+
+        <div style="margin-bottom:8px;">
+            <!-- No refresh control: image will show current session captcha value and will change on page load -->
+            <img
+                src="../includes/captcha.php"
+                alt="CAPTCHA"
+                id="captcha-img"
+                style="border-radius:6px; border:1px solid #ddd; height:56px;"
+            >
+        </div>
+
+        <label style="display:block; margin-bottom:14px;">
+            <input type="text" name="captcha" required placeholder="Enter code above" style="width:100%; padding:10px; border-radius:8px; border:1.5px solid #d9d9e3;">
+        </label>
+
+        <div style="display:flex; gap:12px; align-items:center;">
+            <button type="submit" class="user-login-form button" style="padding:10px 16px; border-radius:8px; background:#21dac5; color:#fff; border:none; font-weight:800;">Login</button>
+        </div>
+        <p>Already have an account? <a href="user_login.php">Login here</a></p>
+
+        <p style="margin-top:18px;">
+            <a href="forgot_password.php">Forgot Password?</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="forgot_email.php">Forgot Email?</a>
+        </p>
     </form>
-    <p>
-        <a href="forgot_password.php">Forgot Password?</a><br>
-        <a href="forgot_email.php">Forgot Email?</a>
-    </p>
-    <p>No account yet? <a href="sign_up.php">Sign up here</a></p>
 </div>
-</body>
-</html>
+
+<?php require_once __DIR__ . '/../includes/footer.php'; ?>
